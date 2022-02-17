@@ -25,7 +25,9 @@
 
 
 	<ItemGroup>
-	  <MonoGameContentReference Include="..\MGCoreStandard\Content\Content.mgcb" Link="Content\Content.mgcb" />
+	  <MonoGameContentReference Include="..\MGCoreStandard\Content\Content.mgcb" Link="Content\Content.mgcb">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </MonoGameContentReference>
 	</ItemGroup>
 
 </Project>

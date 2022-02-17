@@ -70,6 +70,9 @@ namespace MGStandard
 
 
         SpriteBatch spriteBatch;
+
+
+        Texture2D catClipMask;
         protected override void LoadContent()
         {
 
@@ -92,7 +95,14 @@ namespace MGStandard
             shader = Content.Load<Effect>("Invert");
 
             spriteCat = Content.Load<Texture2D>("surge");
+
+            clip = Content.Load<Effect>("ClipShader");
+
+            catClipMask = Content.Load<Texture2D>("surgeclip");
         }
+
+
+        Effect clip;
 
 
         protected override void OnActivated(object sender, EventArgs args)
@@ -115,9 +125,6 @@ namespace MGStandard
             //TODO put this on the callback from the GameLoop
             base.Update(gt); //updates the Input keys
 
-
-      
-
         }
 
     
@@ -134,18 +141,22 @@ namespace MGStandard
             {
 
 
-                GraphicsDevice.Clear(Color.Magenta);
+                GraphicsDevice.Clear(Color.Yellow);
 
+        
+              clip.Parameters[0].SetValue(catClipMask);
+                clip.Parameters[1].SetValue(spriteCat); ;
 
+             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+//
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, clip);
+                
 
+               spriteBatch.Draw(catClipMask, Vector2.Zero, Color.White); ;
 
-
-            //    spriteBatch.Begin();
-
-
-
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,shader);
-                spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
+           //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
+           //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
+           //sending blend mode sourcealpha might work but this is fine
                 spriteBatch.End();
 
                 base.Draw(gameTime);

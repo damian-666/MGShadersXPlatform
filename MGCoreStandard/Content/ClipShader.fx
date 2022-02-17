@@ -20,7 +20,7 @@ sampler ClipTextureSampler = sampler_state
 
 
 
-extern Texture2D DrawTexture;
+//extern Texture2D DrawTexture;
 
 sampler DrawTexSampler = sampler_state
 {
@@ -41,25 +41,25 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 {
 
 
- //   float4 color = tex2D(s0, input.TextureCoordinates);
+ // float4 color = tex2D(s0, input.TextureCoordinates);
 
 
-
-    float color = tex2D(DrawTexSampler, input.TextureCoordinates);
     float4 mask = tex2D(ClipTextureSampler, input.TextureCoordinates);
 
- // if ( mask.b ==1)
-//    if (all(mask) == all(float4(0, 0, 0, 0)))
- //   {
- /////       clip(-1);
-  //  }
+
+ float4 color = tex2D(DrawTexSampler, input.TextureCoordinates);
+    
+  
+
+  if ( all(mask) != all(float4(1, 1, 1, 1)))
+  {
+    clip(-1);
+   }
+
+ 
 
 
     return color;
-
-
-
- //   return color;
 }
 
 

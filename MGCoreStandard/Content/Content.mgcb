@@ -93,6 +93,26 @@
 #begin surge.png
 /importer:TextureImporter
 /processor:TextureProcessor
+
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=false
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:surge.png
+
+
+
+#begin surgeclip.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processor:TextureProcessor
+
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=false
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:surgeclip.png
 
 
