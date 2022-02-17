@@ -149,7 +149,7 @@ namespace MGStandard
 
              //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
 //
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, clip);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
                 
 
                spriteBatch.Draw(catClipMask, Vector2.Zero, Color.White); ;

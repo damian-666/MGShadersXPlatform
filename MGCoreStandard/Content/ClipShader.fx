@@ -10,8 +10,7 @@
 sampler s0;
 
 
-
-extern Texture2D ClipTexture;
+Texture2D ClipTexture;
 
 sampler ClipTextureSampler = sampler_state
 {
@@ -20,7 +19,7 @@ sampler ClipTextureSampler = sampler_state
 
 
 
-//extern Texture2D DrawTexture;
+Texture2D DrawTexture;
 
 sampler DrawTexSampler = sampler_state
 {
