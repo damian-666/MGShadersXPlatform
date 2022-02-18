@@ -45,8 +45,8 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-    <PlatformTarget>x64</PlatformTarget>
-    <JavaMaximumHeapSize> 1G</JavaMaximumHeapSize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
@@ -54,7 +54,7 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>ANDROID PRODUCTION</DefineConstants>
+    <DefineConstants>ANDROID </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
@@ -78,6 +78,7 @@
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AndroidKeyStore>false</AndroidKeyStore>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -90,12 +91,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\MGCoreStandard\Content\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </MonoGameContentReference>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
@@ -110,6 +111,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
+    <PackageReference Include="MonoGame.Content.Builder.Task">
+      <Version>3.8.0.1641</Version>
+    </PackageReference>
     <PackageReference Include="MonoGame.Framework.Android">
       <Version>3.8.0.1641</Version>
     </PackageReference>
@@ -119,5 +123,8 @@
       <Project>{01148d06-17af-4358-b309-459a8e47f271}</Project>
       <Name>MGCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
 </Project>

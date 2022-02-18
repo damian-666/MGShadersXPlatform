@@ -85,9 +85,8 @@ namespace MGStandard
             = GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0; 
 
 
-
     
-        Window.Title = "MG X Platfrom Shaders";
+        Window.Title = "MG Cross Platform Shaders " + (IsDirectX ? "DirectX" : "OpenGL");
 
       spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -152,7 +151,7 @@ namespace MGStandard
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
                 
 
-               spriteBatch.Draw(catClipMask, Vector2.Zero, Color.White); ;
+               spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
 
            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
