@@ -1,5 +1,4 @@
-﻿//#define TWOPASSDRAW
-//#define CLIPTEST
+﻿#define RENDERTARGETTEST
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,31 +19,19 @@ namespace MGStandard
     public class CoreGame : MGCore
     {
 
-        public delegate string FileOpenDelegate(); //TOD get this working for window testing
-        public static FileOpenDelegate OpenFileDlg;
-
+   
         //global settings
 
         internal const int MsaaSampleLimit = 32;
 
-        public static bool IsAndroid = false;
-
-        public static bool ShowDebugInfo = true;
-
-        public static bool ParallelDecodeJpg = true;
-
-        public static bool ShowFPSTitle = true;
-
-        public static bool IsUIMouseVisible = true;
-
- 
+    
         public static new CoreGame Instance;
 
         public CoreGame()
         {
 
             Instance = this;
-            IsUIMouseVisible = true;
+         
         }
 
 
@@ -88,7 +75,14 @@ namespace MGStandard
     
         Window.Title = "MG Cross Platform Shaders " + (IsDirectX ? "DirectX" : "OpenGL");
 
-      spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
+
+#if RENDERTARGETTEST
+            Window.Title += " Rended Target";
+#endif
+
+           spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
             shader = Content.Load<Effect>("Invert");
@@ -129,7 +123,7 @@ namespace MGStandard
     
       
 
-
+        Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
 
@@ -142,24 +136,50 @@ namespace MGStandard
 
                 GraphicsDevice.Clear(Color.Yellow);
 
-        
-              clip.Parameters[0].SetValue(catClipMask);
-                clip.Parameters[1].SetValue(spriteCat); ;
 
-             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
-//
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
+#if RENDERTARGETTEST
+                if (clippedTex==null)
+                {
+                   clippedTex=  Rasterizer.GetClippedTexture(GraphicsDevice, spriteCat, catClipMask, clip);
+
+                }
+
+                UInt32[] color = new UInt32[spriteCat.Width * spriteCat.Height];
+                 clippedTex.GetData<UInt32>(color);
+
+
+            //    GraphicsDevice.Clear(Color.Transparent);
+
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
                 
 
-               spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
+              spriteBatch.Draw(clippedTex, new Vector2(150,100), Color.White); ;
+
 
            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
            //sending blend mode sourcealpha might work but this is fine
-                spriteBatch.End();
+               spriteBatch.End();
 
-                base.Draw(gameTime);
 
+#else
+
+                clip.Parameters[0].SetValue(catClipMask);
+              clip.Parameters[1].SetValue(spriteCat); ;
+
+             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+//
+              spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
+                
+
+              spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
+
+           //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
+           //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
+           //sending blend mode sourcealpha might work but this is fine
+               spriteBatch.End();
+
+#endif
 
 
             }
