@@ -79,7 +79,7 @@ namespace MGStandard
 
 
 #if RENDERTARGETTEST
-            Window.Title += " Rended Target";
+            Window.Title += " Render Target";
 #endif
 
            spriteBatch = new SpriteBatch(GraphicsDevice);
