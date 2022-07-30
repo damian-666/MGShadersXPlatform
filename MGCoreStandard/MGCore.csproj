@@ -1,6 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release;ReleasePdb;ReleaseNoTrace</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,20 +17,13 @@
     <DefineConstants>$(DefineConstants);TRACE;PRODUCTION</DefineConstants>
   </PropertyGroup>
 
+
+
   <ItemGroup>
-    <Resource Include="Content\Content.mgcb" />
-    <EmbeddedResource Include="Content\Console16.spritefont">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Content\Console32.spritefont">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Content\Score.spritefont">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.*">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

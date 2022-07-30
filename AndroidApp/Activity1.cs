@@ -1,31 +1,32 @@
-using MGStandard;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-
 using Microsoft.Xna.Framework;
 using static Android.Views.View;
-
+using MGStandard;
+    
 
 namespace MGXPlatfrm.Android
 {
     [Activity(
-        Label = "MGShaderTest",
+        
+         Label = "MGXAndroidApp",
         MainLauncher = true,
-        Icon = "@drawable/icon",
-        Theme = "@style/Theme.Splash",
+   		 Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
         LaunchMode = LaunchMode.SingleInstance,
-        ScreenOrientation = ScreenOrientation.SensorLandscape,
+      ScreenOrientation = ScreenOrientation.FullUser,
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
     )]
 
+     //   ScreenOrientation = ScreenOrientation.FullUser,
 
 
- 
-    public class Activity1 : AndroidGameActivity, IOnSystemUiVisibilityChangeListener
+
+
+    public class Activity1 : AndroidGameActivity//, IOnSystemUiVisibilityChangeListener
     {
 
         private View _view;
@@ -42,14 +43,13 @@ namespace MGXPlatfrm.Android
         {
             base.OnCreate(bundle);
 
-  
+            
             _game = new CoreGame();
 
             _view = _game.Services.GetService(typeof(View)) as View;
 
-            this.Window.DecorView.SetOnSystemUiVisibilityChangeListener(this);
-            HideSystemUI();
-
+        //    this.Window.DecorView.SetOnSystemUiVisibilityChangeListener(this);
+       //
             SetContentView(_view);
 
 
@@ -57,6 +57,7 @@ namespace MGXPlatfrm.Android
 
         }
 
+        /*
         private void HideSystemUI()
         {
             SystemUiFlags flags = SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen | SystemUiFlags.ImmersiveSticky;
@@ -66,7 +67,7 @@ namespace MGXPlatfrm.Android
         public void OnSystemUiVisibilityChange([GeneratedEnum] StatusBarVisibility visibility)
         {
             HideSystemUI();
-        }
+        }*/
 
 
     }
