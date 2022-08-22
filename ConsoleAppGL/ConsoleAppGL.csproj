@@ -5,13 +5,18 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Platforms>AnyCPU;ARM64</Platforms>
+    <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <IsPublishable>False</IsPublishable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MGCoreStandard\MGCore.csproj" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
 
 
 
@@ -22,13 +27,21 @@
 	</ItemGroup>
 
 
+
 	<ItemGroup>
-		<Folder Include="Content\" />
+	  <Folder Include="Content\" />
 	</ItemGroup>
 
 
+
 	<ItemGroup>
-		<MonoGameContentReference Include="..\MGCoreStandard\Content\Content.mgcb" Link="Content\Content.mgcb" />
+	  <MonoGameContentReference Include="..\MGCore\Content\Content.mgcb" Link="Content\Content.mgcb" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MGCore\MGCore.csproj" />
 	</ItemGroup>
 
 

@@ -8,7 +8,7 @@ using System;
 using System.Diagnostics;
 
 
-namespace MGStandard
+namespace MGCore
 {
 
 
@@ -16,7 +16,7 @@ namespace MGStandard
     /// Basic UI and core app level functions for 2DOword for mobile and desktop platforms, built over the general purpose MGCore over XNA Game, Tool doesnt use this.
     /// The platfrom dependent parts over this are designed to be as thin as possible, with all shared functionality in here
     /// </summary>
-    public class CoreGame : MGCore
+    public class CoreGame : MGGameCore
     {
 
    
@@ -134,7 +134,7 @@ namespace MGStandard
             {
 
 
-                GraphicsDevice.Clear(Color.Yellow);
+                GraphicsDevice.Clear(Color.Beige);
 
 
 #if RENDERTARGETTEST

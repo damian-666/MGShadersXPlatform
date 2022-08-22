@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,22 +6,22 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 
-namespace MGStandard
+namespace MGCore
 {
-    public class MGCore : Game
+    public class MGGameCore : Game
     {
         protected GraphicsDeviceManager _graphicsManager;
         protected SpriteBatch _spriteBatch;
 
         protected SpriteFont _font;
 
-  
-        public static MGCore Instance => _instance;
+
+        public static MGGameCore Instance => _instance;
 
         /// <summary>
         /// facilitates easy access to the global Content instance for internal classes
         /// </summary>
-        internal static MGCore _instance;
+        internal static MGGameCore _instance;
 
 
 
@@ -30,63 +29,65 @@ namespace MGStandard
         /// enables/disables if we should quit the app when escape is pressed
         /// </summary>
         public static bool ExitOnEscapeKeypress = false;//we handing this in game code for Back
-        
+
 
 
         public GraphicsDeviceManager GraphicsDeviceManager { get => _graphicsManager; }
 
 
 
-        public MGCore()
-         {
+        public MGGameCore()
+        {
 
-             _graphicsManager = new GraphicsDeviceManager(this)
+            _graphicsManager=new GraphicsDeviceManager(this)
             {
-             //   PreferredBackBufferWidth = width,
-           //     PreferredBackBufferHeight = height,
-          //      IsFullScreen = isFullScreen,
-                SynchronizeWithVerticalRetrace = true
+                //   PreferredBackBufferWidth = width,
+                //     PreferredBackBufferHeight = height,
+                //      IsFullScreen = isFullScreen,
+
+                ///    PreferMultiSampling = true,
+                SynchronizeWithVerticalRetrace=true
             };
 
-            _graphicsManager.GraphicsProfile = GraphicsProfile.HiDef;
+            _graphicsManager.GraphicsProfile=GraphicsProfile.HiDef;
 
 
-            _graphicsManager.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
+            _graphicsManager.PreferredDepthStencilFormat=DepthFormat.Depth24Stencil8;
 
-        //    _graphicsManager.IsFullScreen = isFullScreen;
+            //    _graphicsManager.IsFullScreen = isFullScreen;
 
 
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-            _instance = this;
-             Window.Title = "CrossPlatformShaderSample";
-       
+            Content.RootDirectory="Content";
+            IsMouseVisible=true;
+            _instance=this;
+            Window.Title="CrossPlatformShaderSample";
+
 
 
 
         }
 
-               public  int Width
+        public int Width
         {
             get => _graphicsManager.PreferredBackBufferWidth;
-            set => _graphicsManager.PreferredBackBufferWidth= value;
+            set => _graphicsManager.PreferredBackBufferWidth=value;
         }
 
-        public bool IsFullScreen { get => _graphicsManager.IsFullScreen; set => _graphicsManager.IsFullScreen = value; }
+        public bool IsFullScreen { get => _graphicsManager.IsFullScreen; set => _graphicsManager.IsFullScreen=value; }
 
         /// <summary>
         /// height of the GraphicsDevice back buffer
         /// </summary>
         /// <value>The height.</value>
-        public  int Height
+        public int Height
         {
             get => _graphicsManager.PreferredBackBufferHeight;
-            set => _graphicsManager.PreferredBackBufferHeight = value;
+            set => _graphicsManager.PreferredBackBufferHeight=value;
         }
 
 
 
-    
+
 
 
         protected override void Initialize()
@@ -95,26 +96,26 @@ namespace MGStandard
 
             base.Initialize();
 
-       
+
         }
 
 
 
 
-   
+
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch=new SpriteBatch(GraphicsDevice);
 
 
-           
-              
+
+
             //loading a biggest font and scale by .5 seemms to work better
-            _font = Content.Load<SpriteFont>("Console32");// or arial
+            _font=Content.Load<SpriteFont>("Console32");// or arial
 
 
 
-       }
+        }
 
 
         bool once = true;
@@ -123,14 +124,14 @@ namespace MGStandard
         protected override void Update(GameTime gameTime)
         {
 
-    
 
-                    base.Update(gameTime);
+
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-        
+
 
             base.Draw(gameTime);//draws the DrawableComponent
         }

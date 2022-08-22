@@ -1,18 +1,18 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
+
 using Android.Views;
 using Microsoft.Xna.Framework;
-using static Android.Views.View;
-using MGStandard;
+
+using MGCore;
     
 
 namespace MGXPlatfrm.Android
 {
     [Activity(
         
-         Label = "MGXAndroidApp",
+         Label = "MGXAndroid6",
         MainLauncher = true,
    		 Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
@@ -43,7 +43,7 @@ namespace MGXPlatfrm.Android
         {
             base.OnCreate(bundle);
 
-            
+             
             _game = new CoreGame();
 
             _view = _game.Services.GetService(typeof(View)) as View;

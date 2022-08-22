@@ -1,5 +1,5 @@
 ﻿
-using MGStandard;
+using MGCore;
 
 {
     var game = new CoreGame();

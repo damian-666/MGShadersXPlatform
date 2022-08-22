@@ -1,5 +1,5 @@
 ﻿
-using MGStandard;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 
-namespace MGStandard
+namespace MGCore
 {
 
     public class Rasterizer
@@ -45,7 +45,7 @@ namespace MGStandard
 
             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
             //
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, null, null, null, clip);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, clip);
             spriteBatch.Draw(mask, Vector2.Zero, Color.White); ;
 
             //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
@@ -97,19 +97,20 @@ namespace MGStandard
                //     false,
 
 
-               CoreGame.IsDirectX,  ///use mip maps in dx tho.. in gl it not working, alos cnat antialialis line w mipmap on
+               CoreGame.IsDirectX,  ///use mip maps in dx tho.. in gl for andord stll mg38.1  not working, alos cant  antialialis line w mipmap on
 
 
-               CoreGame.IsDirectX
+               CoreGame.IsDirectX//    
                ? SurfaceFormat.Bgra32
 
                 :
-               SurfaceFormat.Color,
+               SurfaceFormat.Color,//TODO chek
 
 
-                  DepthFormat.Depth24Stencil8,
+                  DepthFormat.Depth24Stencil8, //TODO check
               //  DepthFormat.None,
-              0,
+             0,
+             //4 thsi stll doesnt work in android, works in desktop Gl tho, 
                 RenderTargetUsage.DiscardContents, true); ;
             ;
 
