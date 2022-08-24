@@ -33,11 +33,11 @@
 	</ItemGroup>
 
 
-
-	<ItemGroup>
-	  <MonoGameContentReference Include="..\MGCore\Content\Content.mgcb" Link="Content\Content.mgcb" />
+<ItemGroup>
+	  <MonoGameContentReference Include="..\MGCore\Content\Content.mgcb" Link="Content\Content.mgcb">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </MonoGameContentReference>
 	</ItemGroup>
-
 
 
 	<ItemGroup>

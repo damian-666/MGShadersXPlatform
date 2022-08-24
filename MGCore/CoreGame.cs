@@ -53,7 +53,6 @@ namespace MGCore
 
         Texture2D spritetoClip;
 
-        Effect shader;
 
 
         SpriteBatch spriteBatch;
