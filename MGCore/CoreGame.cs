@@ -51,7 +51,7 @@ namespace MGCore
 
 
 
-        Texture2D spriteCat;
+        Texture2D spritetoClip;
 
         Effect shader;
 
@@ -59,7 +59,7 @@ namespace MGCore
         SpriteBatch spriteBatch;
 
 
-        Texture2D catClipMask;
+        Texture2D striteClipMask;
         protected override void LoadContent()
         {
 
@@ -76,7 +76,7 @@ namespace MGCore
         Window.Title = "MG Cross Platform Shaders " + (IsDirectX ? "DirectX" : "OpenGL");
 
 
-
+            Window.AllowUserResizing=true;
 
 #if RENDERTARGETTEST
             Window.Title += " Render Target";
@@ -85,13 +85,13 @@ namespace MGCore
            spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            shader = Content.Load<Effect>("Invert");
+     //       shader = Content.Load<Effect>("Invert");
 
-            spriteCat = Content.Load<Texture2D>("surge");
+            spritetoClip = Content.Load<Texture2D>("surge");
 
             clip = Content.Load<Effect>("ClipShader");
 
-            catClipMask = Content.Load<Texture2D>("surgeclip");
+            striteClipMask = Content.Load<Texture2D>("surgeclip");
         }
 
 
@@ -134,26 +134,27 @@ namespace MGCore
             {
 
 
-                GraphicsDevice.Clear(Color.Beige);
+                GraphicsDevice.Clear(Color.Orange);
 
 
 #if RENDERTARGETTEST
                 if (clippedTex==null)
                 {
-                   clippedTex=  Rasterizer.GetClippedTexture(GraphicsDevice, spriteCat, catClipMask, clip);
+                   clippedTex=  Rasterizer.GetClippedTexture(GraphicsDevice, spritetoClip, striteClipMask, clip);
 
                 }
 
-                UInt32[] color = new UInt32[spriteCat.Width * spriteCat.Height];
+                UInt32[] color = new UInt32[spritetoClip.Width * spritetoClip.Height];
                  clippedTex.GetData<UInt32>(color);
 
 
             //    GraphicsDevice.Clear(Color.Transparent);
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
-                
 
-              spriteBatch.Draw(clippedTex, new Vector2(150,100), Color.White); ;
+
+                spriteBatch.Draw(clippedTex, new Vector2(150, 100), 
+           Color.White);
 
 
            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);

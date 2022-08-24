@@ -1,5 +1,5 @@
 // ##### ##### ##### ##### ##### ##### #####
-// ##### ##### Debugging/config  ##### #####
+// ##### ##### Debugging/config  ##### #####   UNTESTED
 // ##### ##### ##### ##### ##### ##### #####
 
 // if z is ignored for attenuation it will be calculated with z = 0 so the falloff is 2D linear

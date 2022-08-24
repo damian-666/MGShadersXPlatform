@@ -45,11 +45,11 @@ namespace MGCore
 
             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
             //
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, clip);
-            spriteBatch.Draw(mask, Vector2.Zero, Color.White); ;
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, clip);
+            spriteBatch.Draw(mask, Vector2.Zero, Color.Transparent); ;
 
             //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
-            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
+            //no because we really wann just draw whats in the mask , it will skip alpha so it wont work the other way...   
             //sending blend mode sourcealpha might work but this is fine
             spriteBatch.End();
 
@@ -109,8 +109,8 @@ namespace MGCore
 
                   DepthFormat.Depth24Stencil8, //TODO check
               //  DepthFormat.None,
-             0,
-             //4 thsi stll doesnt work in android, works in desktop Gl tho, 
+           
+           0,  //4 or muitpsampe coun stll doesnt work in android, works in desktop Gl tho, 
                 RenderTargetUsage.DiscardContents, true); ;
             ;
 

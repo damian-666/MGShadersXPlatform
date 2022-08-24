@@ -43,26 +43,19 @@ namespace MGCore
             {
                 //   PreferredBackBufferWidth = width,
                 //     PreferredBackBufferHeight = height,
-                //      IsFullScreen = isFullScreen,
-
-                ///    PreferMultiSampling = true,
-                SynchronizeWithVerticalRetrace=true
+                //      IsFullScreen = isFullScreen,   // dont so tis  use the transform and scale
+              //  PreferMultiSampling=true,  //donest work on android
+                SynchronizeWithVerticalRetrace=true  // use producer consumer.. run bk thread to run physics or whtever, copy viewable data to some kind of display list, draw the last good frame for multithreading..  to avoid locks or wait or semaphores in the draw method, cant generate a view while reading it..
             };
 
             _graphicsManager.GraphicsProfile=GraphicsProfile.HiDef;
 
+            _graphicsManager.PreferredDepthStencilFormat=DepthFormat.Depth24Stencil8; //
 
-            _graphicsManager.PreferredDepthStencilFormat=DepthFormat.Depth24Stencil8;
-
-            //    _graphicsManager.IsFullScreen = isFullScreen;
-
-
-            Content.RootDirectory="Content";
+             Content.RootDirectory="Content";
             IsMouseVisible=true;
             _instance=this;
-            Window.Title="CrossPlatformShaderSample";
-
-
+            Window.Title="CrossPlatformCipShaderSample";
 
 
         }
@@ -85,21 +78,11 @@ namespace MGCore
             set => _graphicsManager.PreferredBackBufferHeight=value;
         }
 
-
-
-
-
-
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+       
             base.Initialize();
-
-
         }
-
-
 
 
 
@@ -108,22 +91,16 @@ namespace MGCore
             _spriteBatch=new SpriteBatch(GraphicsDevice);
 
 
-
-
-            //loading a biggest font and scale by .5 seemms to work better
+            //loading a biggest font and scale by  factor of 2  seemms to work better
             _font=Content.Load<SpriteFont>("Console32");// or arial
-
-
 
         }
 
 
-        bool once = true;
-
+    
 
         protected override void Update(GameTime gameTime)
         {
-
 
 
             base.Update(gameTime);
@@ -132,8 +109,7 @@ namespace MGCore
         protected override void Draw(GameTime gameTime)
         {
 
-
-            base.Draw(gameTime);//draws the DrawableComponent
+            base.Draw(gameTime);
         }
 
 

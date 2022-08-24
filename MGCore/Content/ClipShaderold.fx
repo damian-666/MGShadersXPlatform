@@ -11,7 +11,7 @@ sampler TextureSampler2 = sampler_state
 {
     Texture = <DrawTexture>;
 };
-
+//this came from a sample from XNA, didnt work..
 
 //Note: Color1 not needed.
 float4 PixelShaderFunction(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0

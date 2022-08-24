@@ -40,25 +40,23 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 {
 
 
- // float4 color = tex2D(s0, input.TextureCoordinates);
-
+ // float4 color = tex2D(s0, input.TextureCoordinates);t   //didnt work on al platfroms, REVISIT
 
     float4 mask = tex2D(ClipTextureSampler, input.TextureCoordinates);
 
-
- float4 color = tex2D(DrawTexSampler, input.TextureCoordinates);
+    float4 color = tex2D(DrawTexSampler, input.TextureCoordinates);
     
-  
 
-  if ( all(mask) != all(float4(1, 1, 1, 1)))
+  if ( all(mask) == all(float4(1, 1, 1, 1))) //there are  build in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.
   {
-    clip(-1);
-   }
+   return color;
+  }
+  else {
+      return float4(0, 0, 0, 0);
+  }
 
  
-
-
-    return color;
+  
 }
 
 
