@@ -20,13 +20,9 @@ namespace MGXPlatfrm.Android
       ScreenOrientation = ScreenOrientation.FullUser,
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
     )]
+  
 
-     //   ScreenOrientation = ScreenOrientation.FullUser,
-
-
-
-
-    public class Activity1 : AndroidGameActivity//, IOnSystemUiVisibilityChangeListener
+    public class Activity1 : AndroidGameActivity//, IOnSystemUiVisibilityChangeListener  //was to hide hte navigation stuffk broken now
     {
 
         private View _view;
@@ -57,7 +53,7 @@ namespace MGXPlatfrm.Android
 
         }
 
-        /*
+        /*  used to work before.. wait this out..
         private void HideSystemUI()
         {
             SystemUiFlags flags = SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen | SystemUiFlags.ImmersiveSticky;

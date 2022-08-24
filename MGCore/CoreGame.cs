@@ -115,7 +115,7 @@ namespace MGCore
         protected override void Update(GameTime gt)
         {
 
-            //TODO put this on the callback from the GameLoop
+            //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
             base.Update(gt); //updates the Input keys
 
         }
