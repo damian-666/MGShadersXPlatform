@@ -38,7 +38,7 @@ struct VertexShaderOutput
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
-
+       
 
  // float4 color = tex2D(s0, input.TextureCoordinates);t   //didnt work on al platfroms, REVISIT
 
@@ -53,8 +53,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
   }
   else {
 
-    //  return float4(1, 0, .1f, 0.7);  //thus is for testing touch fx and buid  works on dx and gl.. had to add it as embedded resouce, the one fx file to work with it.. not sure if this bloats package or what
-      return float4(0, 0, 0, 0);
+  // return float4(1, 0, .1f, 0.7);  //thus is for testing touch fx and buid  works on dx and gl.. had to add it as embedded resouce, the one fx file to work with it.. not sure if this bloats package or what
+   return float4(0, 0, 0, 0);
   }
 
  
