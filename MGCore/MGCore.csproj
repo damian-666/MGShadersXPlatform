@@ -118,7 +118,7 @@
   </ItemGroup>
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <BaseOutputPath>..\..\bin</BaseOutputPath>
+    <BaseOutputPath>bin\</BaseOutputPath>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
