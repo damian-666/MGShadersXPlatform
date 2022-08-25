@@ -3,12 +3,15 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
     <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <UseWindowsForms>True</UseWindowsForms>
-    <IsPublishable>True</IsPublishable>
+    <IsPublishable>False</IsPublishable>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,8 +28,8 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.*" />
-		<PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.*" />
+		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+		<PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
 
 	</ItemGroup>
 
