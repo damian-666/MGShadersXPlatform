@@ -14,14 +14,17 @@
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <Platforms>AnyCPU;ARM64</Platforms>
     <IsPublishable>False</IsPublishable>
+    <BaseOutputPath>..\bin\</BaseOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PublishTrimmed>False</PublishTrimmed>
     <DefineConstants>$(DefineConstants)</DefineConstants>
+    <DebugType>none</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <PublishTrimmed>False</PublishTrimmed>
     <DefineConstants>$(DefineConstants)</DefineConstants>
+    <DebugType>none</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android|AnyCPU'">
     <DefineConstants>$(DefineConstants)</DefineConstants>

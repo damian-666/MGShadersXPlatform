@@ -7,22 +7,26 @@
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <IsPublishable>False</IsPublishable>
+    <IsPublishable>True</IsPublishable>
+    <BaseOutputPath>..\bin\</BaseOutputPath>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
 
 
 	<ItemGroup>
-		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.*" />
-		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.*" />
+		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
 
 	</ItemGroup>
 

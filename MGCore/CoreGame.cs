@@ -133,14 +133,14 @@ namespace MGCore
             {
 
 
-                GraphicsDevice.Clear(Color.Orange);
+                GraphicsDevice.Clear(Color.Green);
 
 
 #if RENDERTARGETTEST
                 if (clippedTex==null)
                 {
                    clippedTex=  Rasterizer.GetClippedTexture(GraphicsDevice, spritetoClip, striteClipMask, clip);
-
+                    
                 }
 
                 UInt32[] color = new UInt32[spritetoClip.Width * spritetoClip.Height];

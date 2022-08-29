@@ -1,3 +1,15 @@
+
+
+#if OPENGL
+#define SV_POSITION POSITION
+#define VS_SHADERMODEL vs_3_0
+#define PS_SHADERMODEL ps_3_0
+#else
+#define VS_SHADERMODEL vs_4_0_level_9_1
+#define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+sampler s0;
+
 Texture2D ClipTexture;
  
 sampler TextureSampler = sampler_state
@@ -35,16 +47,13 @@ float4 PixelShaderFunction(float4 pos : SV_POSITION, float4 color1 : COLOR0, flo
    return colorOut;
 }
  
-technique PassThrough
-{
-    pass Pass1
+    technique technique PassThrough
     {
 
-#ifdef SM4
-        PixelShader = compile ps_4_0 PixelShaderFunction();
-#else
+    {
+        pass P0
+        {
+            PixelShader = compile PS_SHADERMODEL MainPS();
+        }
 
-        PixelShader = compile ps_3_0 PixelShaderFunction();
-#endif
     }
-}
