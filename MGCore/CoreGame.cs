@@ -133,7 +133,7 @@ namespace MGCore
             {
 
 
-                GraphicsDevice.Clear(Color.Green);
+                GraphicsDevice.Clear(Color.LightBlue);
 
 
 #if RENDERTARGETTEST

@@ -13,7 +13,7 @@
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <Platforms>AnyCPU;ARM64</Platforms>
-    <IsPublishable>False</IsPublishable>
+	  <IsPublishable>False</IsPublishable>
     <BaseOutputPath>..\bin\</BaseOutputPath>
   
     <Title>AndroidClipMGTest</Title>

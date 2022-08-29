@@ -112,7 +112,7 @@
   </ItemGroup>
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <BaseOutputPath>..\..\bin\</BaseOutputPath>
+    <BaseOutputPath>..\bin\</BaseOutputPath>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
