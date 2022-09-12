@@ -117,7 +117,7 @@
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
-    <DefineConstants>$(DefineConstants)PRODUCTION</DefineConstants>    <DebugType>none</DebugType>
+    <DefineConstants>$(DefineConstants)</DefineConstants>    <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug'">
