@@ -4,36 +4,31 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
-
 using System.Diagnostics;
-
+using System.Reflection;
 
 namespace MGCore
 {
 
 
     /// <summary>
-    /// Basic UI and core app level functions for 2DOword for mobile and desktop platforms, built over the general purpose MGCore over XNA Game, Tool doesnt use this.
-    /// The platfrom dependent parts over this are designed to be as thin as possible, with all shared functionality in here
+    /// Basic UI and core app level functions for YOUR  game .  for mobile and desktop platforms, built over the general purpose   XNA Game based code
+    /// The platfrom dependent parts over this are designed to be as thin as possible, with all shared functionality and game asssets in here
     /// </summary>
     public class CoreGame : MGGameCore
     {
 
-   
         //global settings
 
         internal const int MsaaSampleLimit = 32;
 
-    
+
         public static new CoreGame Instance;
 
         public CoreGame()
         {
-
-            Instance = this;
-         
+            Instance=this;
         }
-
 
 
         static public bool IsDirectX = false;
@@ -43,12 +38,7 @@ namespace MGCore
         protected override void Initialize()
         {
             base.Initialize();
-
-
-
         }
-
-
 
 
         Texture2D spritetoClip;
@@ -68,29 +58,29 @@ namespace MGCore
 
             //we always have a Device by here
             GraphicsDevice.PresentationParameters.MultiSampleCount           // set to windows limit, if gpu doesn't support it, monogame will autom. scale it down to the next supported level
-            = GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0; 
+            =GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
 
 
-    
-        Window.Title = "MG Cross Platform Shaders " + (IsDirectX ? "DirectX" : "OpenGL");
+
+            Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL");
 
 
             Window.AllowUserResizing=true;
 
 #if RENDERTARGETTEST
-            Window.Title += " Render Target";
+            Window.Title+=" Render Target";
 #endif
 
-           spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch=new SpriteBatch(GraphicsDevice);
 
 
-     //       shader = Content.Load<Effect>("Invert");
+            //       shader = Content.Load<Effect>("Invert");
 
-            spritetoClip = Content.Load<Texture2D>("surge");
+            spritetoClip=Content.Load<Texture2D>("surge");
 
-            clip = Content.Load<Effect>("ClipShader");
+            clip=Content.Load<Effect>("ClipShader");
 
-            striteClipMask = Content.Load<Texture2D>("surgeclip");
+            striteClipMask=Content.Load<Texture2D>("surgeclip");
         }
 
 
@@ -119,47 +109,33 @@ namespace MGCore
 
         }
 
-    
-      
+
+
 
         Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
-
-
-
-
-            try
-            {
-
-
-                GraphicsDevice.Clear(Color.LightBlue);
+            GraphicsDevice.Clear(Color.LightBlue);
 
 
 #if RENDERTARGETTEST
-                if (clippedTex==null)
-                {
-                   clippedTex=  Rasterizer.GetClippedTexture(GraphicsDevice, spritetoClip, striteClipMask, clip);
-                    
-                }
+            if (clippedTex==null)
+            {
+                clippedTex=Rasterizer.GetClippedTexture(GraphicsDevice, spritetoClip, striteClipMask, clip);
 
-                UInt32[] color = new UInt32[spritetoClip.Width * spritetoClip.Height];
-                 clippedTex.GetData<UInt32>(color);
+            }
 
+            UInt32[] color = new UInt32[spritetoClip.Width*spritetoClip.Height];
+            clippedTex.GetData<UInt32>(color);
 
             //    GraphicsDevice.Clear(Color.Transparent);
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
-
-
-                spriteBatch.Draw(clippedTex, new Vector2(150, 100), 
-           Color.White);
-
-
-           //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
-           //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
-           //sending blend mode sourcealpha might work but this is fine
-               spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
+         
+            spriteBatch.Draw(clippedTex, Vector2.Zero, Color.White);
+            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
+            //sending blend mode sourcealpha might work but this is fine
+            spriteBatch.End();
 
 
 #else
@@ -170,8 +146,7 @@ namespace MGCore
              //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
 //
               spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
-                
-
+               
               spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
 
            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
@@ -181,30 +156,10 @@ namespace MGCore
 
 #endif
 
-
-            }
-
-
-
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-
-            finally
-            {
-
-
-            }
-
-
+        
         }
 
 
-
-
-
-
-
     }
+
 }
