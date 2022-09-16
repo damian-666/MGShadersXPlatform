@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
+<PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Platforms>AnyCPU</Platforms>
+    <Platforms>ARM64;x64</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <IsPublishable>True</IsPublishable>
     <BaseOutputPath>..\bin\</BaseOutputPath>
@@ -14,27 +13,19 @@
     <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug'">
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>none</DebugType>
-  </PropertyGroup>
-
-
 
 	<ItemGroup>
 		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
 
 	</ItemGroup>
-
-
 
 	<ItemGroup>
 	  <Folder Include="Content\" />
@@ -47,12 +38,8 @@
 	  </MonoGameContentReference>
 	</ItemGroup>
 
-
 	<ItemGroup>
 	  <ProjectReference Include="..\MGCore\MGCore.csproj" />
 	</ItemGroup>
-
-
-	
 
 </Project>

@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <SupportedOSPlatformVersion>11.2</SupportedOSPlatformVersion>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <Platforms>ARM64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />

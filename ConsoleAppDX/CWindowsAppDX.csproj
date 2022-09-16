@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
+<PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <Platforms>AnyCPU</Platforms>
+    <Platforms>x64;ARM64</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <UseWindowsForms>True</UseWindowsForms>
-    <IsPublishable>False</IsPublishable>
+    <IsPublishable>True</IsPublishable>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
     <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
     <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
@@ -16,15 +15,16 @@
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
     <DebugType>none</DebugType>
   </PropertyGroup>
 
+ 
   <ItemGroup>
     <ProjectReference Include="..\MGCore\MGCore.csproj" />
   </ItemGroup>
