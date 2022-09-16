@@ -1,52 +1,30 @@
 The main point of this sample is to show how to organize code that uses netcore6 and targets both mobile and desktops.
 
 
- it basically a simpler verson of https://github.com/MonoGame/MonoGame.Samples that targetsed netcore3.1 and netstandard 2.
+ it basically a simpler verson of https://github.com/MonoGame/MonoGame.Samples that target netcore3.1 and netstandard 2.
 
- now mine its all net6.. but took over a week  to update t, just for the simple thing im doing.   Those original samples would be ideal to have more canonical and minimal structures.   mine demos a render target, a clip shader, transforms, and mutliple platfroms with one core game and one place for assets, also touching assets marketed embedded resource ( a workaroudn that might cause bloating if trimming is OFF, whihcc it is for now.. triggers immediate changes on build.  its for development , mabye not final deployment or archiving which i havent done but i can get a releasee build on my phone via usb, have not published to Google Play wiht this as AABB as a open beta but ill wait til things stabilize before trying that
+ now its all net6.. but took over a week  to update t, just for the simple thing im doing.   Those original samples would be ideal to have more canonical and minimal structures.   mine demos a render target, a clip shader, transforms, and mutliple platfroms with one core game and one place for assets, also touching assets marketed embedded resource ( a workaroudn that might cause bloating if trimming is OFF, whihcc it is for now.. triggers immediate changes on build.  its for development , mabye not final deployment or archiving which i havent done but i can get a releasee build on my phone via usb, have not published to Google Play wiht this as AABB as a open beta but ill wait til things stabilize before trying that
  
  The only shader TESTED is the clipshader.    UPDATES... if you touch and fX fie in the code game DLL, content, and build any target it will reflect changes.  I had to makde it an embedded reference , so I dont know if its going to get trimmed or bloat a tiny bit.. its just for working on shaders without rebuild all.   TESTED vs 2022 preview latest.    android release / debug/  samsung arm64.. anycpu might work but i had and issue.  The warnings unsuppotted are GONE and I dont know why or when .   
  
- if you touch the masks used for clipping, i think if they are embedded resource they will also trigger a update..
- dont have time to retest taht...  the clip shader allows holes.. basically if its not white, it wont draw that part of the testure to be clipped.   Bledning works but has regressing, differences in GL and im dont care for now it will get sorted out later.
- 
- the point is i can work on my code again and wait for all the changes from MSFT on ARM (whch i expect to be HUGE, given ARM native on surfaces, Silk, Maui ( buit on xamarin).. i think xamarin is all bloat and make build take forever.    i only use it to launch an MG window so this toolchain sucks for now.   its all bloat.    but, it works and theres one code base hitting 1Billion devices, desktop and phones, with zero repeat links or excessive maintainance or #ifdefs.  REnder targets and blending is still very weird.  I made a Clip shader beause i needed to learn shaders.. its probably not the best way and the samples were old.   all the otehr samples are old and untested but at least build.  
+ the clip shader allows holes.. basically if its not white, it wont draw that part of the testure to be clipped.   Bledning works but has regressing, differences in GL and im dont care for now it will get sorted out later.   the regression is related to multisampling i think, in Gl.
  
  NOTES:  if u plug in ur phone via USB choose the LOWEST device (samsung bllah blah ) in the drop down... or it wll go to the emulator in vs 2022.. now u can tweak a fx file  ( if marked as embedded resource, just to get it to cause a rebuild of the core and make the content builder rebuid) , hit cntr f5 and see a new result. on dx , GL and droid.    debug and release.
- the emulators even on a 2500 surface rpo win 11, HAXM, etc that runs HOT,  are so slow i recommend a touch device like a surface, and or debuging  via usb or wifi.    I have not archived , sideloaded successfully yet and not ready to.   Ideally a cheap ARM surface running native ARM on windows and vs 2022 ARM would be maybe good way to develop your android app, then finishing touches and periodic testing on actual phones and emulators..   IOS is in there but i unload it and havent tested it.
+ the emulators even on a 2500 surface rpo win 11, HAXM, etc that runs HOT,  are so slow i recommend a touch device like a surface, and or debuging  via usb or wifi.    I have not archived , sideloaded successfully yet and not ready to.   Ideally a cheap ARM surface running native ARM on windows and vs 2022 ARM would be maybe good way to develop your android app, then finishing touches and periodic testing on actual phones and emulators..   IOS is in there and havent tested it.
  
  
- 
- 
-
 all the game code and assets are in a libary tht is linked to GL as a proxy., buts its the target EXE that chooses the graphics pipeline as DX or GL.
 
 this is a simple sample but includes textures , shaders ,and render targets and does transparancy and masking.
 
 Most of the other shaders were collected from various samples years old. But none of the projects built in both Gl and DX and worked without tons of extra complexity..  
 
-so i put all the game code in one place, in on sln, with links, no maintainence of duplicates or manual copying or linking
-add assets to the code, mgcb , build targets and go.
-
 tested with usb debug, arm64 and emulator on vs2022 preview 7/30/2022 latest update.
-
-compile some shaders and some other assets.. some are old and untested , but the clip one works on gL , dx , 
-and winodws and it wanst easy.. render target is used.
 
 Basic Effect or stencils can probably do it but i couldn get it to work so i just made a shader cause i need 
 to learn how to write shaders that transpiles anyways.  
 
-Ive only tested my Clipshader.  it works but there mere more bugs then and mabye things would be simler witn mg 3.81
-i did it on MG 3.8  and some of the issues like multisampling or aliasing mayb have been fixed.
-
-
 if you see a yellow hole in the mess is being clipped and has a transparent hole, like a mask.
-
-im filling the screen fully on a samsung with  a notch.
-
-
-
-
 
 it basically ths tutorial https://gmjosack.github.io/posts/my-first-2d-pixel-shaders-part-1/ but with code u can run anything with no repeat or special mods.
 
