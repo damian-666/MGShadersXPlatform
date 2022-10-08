@@ -2,17 +2,19 @@
 <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>warnings</Nullable>
     <Platforms>x64;ARM64</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <UseWindowsForms>True</UseWindowsForms>
     <IsPublishable>True</IsPublishable>
-    <EnableNETAnalyzers>False</EnableNETAnalyzers>
-    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
-    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+ 
     <BaseOutputPath>..\bin\</BaseOutputPath>
-    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+ 
+    <Title></Title>
+ 
+    <PackageOutputPath />
+ 
+    <PackageId />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

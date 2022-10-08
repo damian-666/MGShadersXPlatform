@@ -48,7 +48,7 @@ namespace MGCore
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, clip);
             spriteBatch.Draw(mask, Vector2.Zero, Color.Transparent); ;
 
-            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
+            //    spriteBatch.Draw(tex, Vector2.Zero, Color.White);
             //no because we really wann just draw whats in the mask , it will skip alpha so it wont work the other way...   
             //sending blend mode sourcealpha might work but this is fine
             spriteBatch.End();

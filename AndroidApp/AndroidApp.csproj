@@ -3,31 +3,31 @@
 	<TargetFramework>net6.0-android31.0</TargetFramework>
    <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
-	  <ApplicationId>com.companyname.MGClipFX</ApplicationId>
+	  <ApplicationId>com.companyname.MGClipFXv2</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <PackageIcon>Icon.png</PackageIcon>
 
-    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
-    <EnableNETAnalyzers>False</EnableNETAnalyzers>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <Platforms>ARM64</Platforms>
-	  <IsPublishable>False</IsPublishable>
+
     <BaseOutputPath>..\bin\</BaseOutputPath>
   
     <Title>AndroidClipMGTest</Title>
+  
+    <Nullable>warnings</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <PublishTrimmed>False</PublishTrimmed>
-    <DefineConstants>$(DefineConstants)</DefineConstants>
-    <DebugType>none</DebugType>
-  </PropertyGroup>
+ 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)'=='Release'">    <DefineConstants>$(DefineConstants)</DefineConstants>
+   <PropertyGroup Condition="'$(Configuration)'=='Release'">  
+	   <DefineConstants>$(DefineConstants)</DefineConstants> 
+
   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+     <PublishTrimmed>False</PublishTrimmed>
+   </PropertyGroup>
+
   
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />

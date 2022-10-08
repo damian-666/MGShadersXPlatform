@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace MGCore
 {
@@ -115,7 +113,7 @@ namespace MGCore
         Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LightBlue);
+            GraphicsDevice.Clear(Color.Yellow);
 
 
 #if RENDERTARGETTEST
@@ -130,9 +128,16 @@ namespace MGCore
 
             //    GraphicsDevice.Clear(Color.Transparent);
 
+
+            BasicEffect var = new BasicEffect(GraphicsDevice);
+       
+
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
+
+
+            Rectangle rct = GraphicsDevice.Viewport.Bounds;
          
-            spriteBatch.Draw(clippedTex, Vector2.Zero, Color.White);
+            spriteBatch.Draw(clippedTex,   rct, null,  Color.White);
             //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
             //sending blend mode sourcealpha might work but this is fine
             spriteBatch.End();

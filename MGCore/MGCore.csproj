@@ -2,9 +2,6 @@
   <PropertyGroup>
     <TargetFramework>Net6.0</TargetFramework>
      </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug'">
-    <DefineConstants>$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Content\bin\**" />
     <Compile Remove="Content\obj\**" />
@@ -43,40 +40,13 @@
     <None Update="Content\DeferredSprite.fx">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Dissolve.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\Dots.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\Effect2b.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\ForwardLighting.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\Invert.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
     <None Update="Content\lightmask.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\MTextureVertPix.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\MultiTexture.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\MultiTextureOverlay.fx">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Content\pixel-sprite-light.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Content\PolygonLight.fx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\Scanlines.fx">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Content\Score.spritefont">
@@ -111,16 +81,17 @@
     </None>
   </ItemGroup>
   <PropertyGroup>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <BaseOutputPath>..\bin\</BaseOutputPath>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
-    <DefineConstants>$(DefineConstants)</DefineConstants>    <DebugType>none</DebugType>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">  
+    <DefineConstants>$(DefineConstants)</DefineConstants>
+	  <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug'">
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
  
