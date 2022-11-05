@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33027.239
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroidDemo", "AndroidSIlkDemo\AndroidDemo.csproj", "{3A76266E-40C2-471B-838C-63AA41502532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroidSilkDemo", "AndroidSIlkDemo\AndroidSilkDemo.csproj", "{3A76266E-40C2-471B-838C-63AA41502532}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
