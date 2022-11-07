@@ -1,5 +1,13 @@
 The main point of this sample is to show how to organize code that uses netcore6 and targets both mobile and desktops.  "Write Once deploy Anywhere"   Its for a game or sim that could work on both a pc and a tablet or phone with keyboard, virtual gamepad, or simple touch, and custom UI..  There are no dependencies besides Monongame and NetCore.
 
+UPDATE:  Tried the bait and switch method with the Compute fork from NuGet  , there are issues:
+
+
+  MonoGame.Framework.Android.Compute.Bulder.Task 3.8.2
+
+    <PackageReference Include="MonoGame.Framework.Compute.DesktopGL" Version="3.8.2" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303">  -> ="MonoGame.Framework.Compute.DesktopGL"   mabye leavng is at 
+    "MonoGame.Framework.DesktopGL" Version="3.8.1.303"> on the shraed dlls will work...   it was working but some chnages happened.. I think that fork needs to public a symbol proxy for hte dll. 
 
  it basically an updated but more complex verson of https://github.com/MonoGame/MonoGame.Samples that target netcore3.1 and netstandard 2.
 
