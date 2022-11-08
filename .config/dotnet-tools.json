@@ -2,34 +2,34 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "dotnet-mgcb": {
-      "version": "3.8.1.303",
+    "dotnet-mgcb-compute": {
+      "version": "3.8.2",
       "commands": [
-        "mgcb"
+        "mgcb-compute"
       ]
     },
-    "dotnet-mgcb-editor": {
-      "version": "3.8.1.303",
+    "dotnet-mgcb-editor-compute": {
+      "version": "3.8.2",
       "commands": [
-        "mgcb-editor"
+        "mgcb-editor-compute"
       ]
     },
-    "dotnet-mgcb-editor-linux": {
-      "version": "3.8.1.303",
+    "dotnet-mgcb-editor-compute-linux": {
+      "version": "3.8.2",
       "commands": [
-        "mgcb-editor-linux"
+        "mgcb-editor-compute-linux"
       ]
     },
-    "dotnet-mgcb-editor-windows": {
-      "version": "3.8.1.303",
+    "dotnet-mgcb-editor-compute-windows": {
+      "version": "3.8.2.1",
       "commands": [
-        "mgcb-editor-windows"
+        "mgcb-editor-compute-windows"
       ]
     },
-    "dotnet-mgcb-editor-mac": {
-      "version": "3.8.1.303",
+    "dotnet-mgcb-editor-compute-mac": {
+      "version": "3.8.2",
       "commands": [
-        "mgcb-editor-mac"
+        "mgcb-editor-compute-mac"
       ]
     }
   }

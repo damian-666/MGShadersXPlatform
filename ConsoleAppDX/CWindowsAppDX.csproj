@@ -33,8 +33,8 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
-		<PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
+		<PackageReference Include="MonoGame.Content.Builder.Task.Compute" Version="3.8.2" />
+		<PackageReference Include="MonoGame.Framework.Compute.WindowsDX" Version="3.8.2" />
 
 	</ItemGroup>
 

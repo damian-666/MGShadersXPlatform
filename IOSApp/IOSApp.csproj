@@ -7,8 +7,8 @@
     <Platforms>ARM64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
-    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Content.Builder.Task.Compute" Version="3.8.2" />
+    <PackageReference Include="MonoGame.Framework.Compute.iOS" Version="3.8.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>Net6.0</TargetFramework>
      </PropertyGroup>
@@ -11,12 +11,12 @@
     <None Remove="Content\obj\**" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Content.mgcb" />
+    <PackageReference Include="MonoGame.Framework.Compute.DesktopGL" Version="3.8.2" >
+     <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
+    <Resource Include="Content\Content.mgcb" />
   </ItemGroup>
   <PropertyGroup>
     <BaseOutputPath>..\bin\</BaseOutputPath>
