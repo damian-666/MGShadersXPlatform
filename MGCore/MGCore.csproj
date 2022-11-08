@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>Net6.0</TargetFramework>
+    <TargetFramework>Net7.0</TargetFramework>
      </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Content\bin\**" />

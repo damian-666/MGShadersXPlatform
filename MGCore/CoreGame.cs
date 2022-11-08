@@ -113,7 +113,7 @@ namespace MGCore
         Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Yellow);
+            GraphicsDevice.Clear(Color.Gainsboro);
 
 
 #if RENDERTARGETTEST
