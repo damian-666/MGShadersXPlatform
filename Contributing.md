@@ -32,5 +32,31 @@ HELPING OTHERS AND DO CHARITY WORK.   $$ WILLNOT BE ACCEPTED.
 
 
 
+Our Pledge
+We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+
+FROM MICROSOFT ONE
+Examples of behavior that contributes to a positive environment for our community include:
+
+Demonstrating empathy and kindness toward other people
+Being respectful of differing opinions, viewpoints, and experiences
+Giving and gracefully accepting constructive feedback
+Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
+Focusing on what is best not just for us as individuals, but for the overall community
+
+MY OWN ..
+INCLUSIVENESS:    WEIRD PEOPLE .. MENTALLY ILL , IDIOT SAVANTS. WELCOME.  
+
+  NO DISRESPECT .. YOU NEVER KNOW WHO YOU ARE TALKING TO.  DON'T SAY ANYTHING YOU WOULD NOT SAY STANDING NEXT TO THEM.  
+
+EGO.   DONT BRING  ONE.     LEARN TO LEARN ,  BEING WRONG IS BETTER THAN PROVING YOUR SMARTER THAN ANYONE.  THAT MEANS YOU LEARNED,  SOMETHING , YOU WON. 
+YOU SHOULD BE HAPPY NOT INSULTED..  WE CAN'T KNOW EVERYTHING.  WE SHOULDNT HAVE TO.  THATS WHAT OTHER PEOPLE ARE FOR.
+
+AUTISM IS COMMON AMONG PROGRAMMERS .  CONSIDER THAT THE OTHER PEOPLE HAVE FEELINGS.  
+
+PATIENCE IS STRENGTH, ANGER IS WEAKNESS..  DONT REACT DEFEND YOURSELF.  YOU MIGHT REALIZE YOU ARE WRONG LATER.
+
 
 

@@ -15,6 +15,14 @@
     <Title>AndroidClipMGTest</Title>
   
     <Nullable>warnings</Nullable>
+  
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+  
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+  
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+  
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
   </PropertyGroup>
  
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -26,6 +34,10 @@
   </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
      <PublishTrimmed>False</PublishTrimmed>
+     <EnableLLVM>True</EnableLLVM>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+     <EnableLLVM>False</EnableLLVM>
    </PropertyGroup>
 
   

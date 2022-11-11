@@ -145,14 +145,17 @@ namespace MGCore
 
 #else
 
-                clip.Parameters[0].SetValue(catClipMask);
-              clip.Parameters[1].SetValue(spriteCat); ;
+            ////        clip.Parameters[0].SetValue(catClipMask);
+            //    clip.Parameters[1].SetValue(spriteCat); ;
 
-             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
-//
-              spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
-               
-              spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
+            //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+            //
+            //     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
+
+            Rectangle rct = GraphicsDevice.Viewport.Bounds;
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+            //    
+            spriteBatch.Draw(spritetoClip,   rct,null, Color.White); ;
 
            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   

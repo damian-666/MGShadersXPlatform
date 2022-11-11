@@ -1,12 +1,21 @@
-
+//#define MOJO
 #if OPENGL
+
+#define VS_SHADERMODEL vs_2_0
+#define PS_SHADERMODEL ps_2_0
+#if !defined(MOJO)
 #define SV_POSITION POSITION
-#define VS_SHADERMODEL vs_3_0
-#define PS_SHADERMODEL ps_3_0
+#endif
+
 #else
 #define VS_SHADERMODEL vs_4_0_level_9_1
 #define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
+
+#if !defined(MOJO)
+#define COLOR  SV_TARGET
+#endif
+
 sampler s0;// i was not able to use this register TODO investigate in mg 3.8.1, so i add two parameters.. to access params was differnet between GL and DX before, also might have been fixed.    It might save memory to use this on big textures.    theres are other samples of multitexutuer shaders in the folder but none are tested... i collected old ones and got them to build... feel free to test fix them if generally useful on DX and Gl and android.
 
 
@@ -41,14 +50,25 @@ struct VertexShaderOutput
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
-       
 
- // float4 color = tex2D(s0, input.TextureCoordinates);t   //didnt work on al platfroms on 3.8, REVISIT TODO
 
-    float4 mask = tex2D(ClipTextureSampler, input.TextureCoordinates);
+    // float4 color = tex2D(s0, input.TextureCoordinates);t   //didnt work on al platfroms on 3.8, REVISIT TODO
 
-    float4 color = tex2D(DrawTexSampler, input.TextureCoordinates);
-    
+
+
+       #if MOJO
+       float4 mask = tex2D(ClipTextureSampler, input.TextureCoordinates);
+
+       float4 color = tex2D(DrawTextureSampler, input.TextureCoordinates);
+   #else
+
+       float4 mask = ClipTexture.Sample(ClipTextureSampler, input.TextureCoordinates);
+
+    float4 color = DrawTexture.Sample(DrawTexSampler, input.TextureCoordinates);
+
+
+#endif
+	
 
   if ( all(mask) == all(float4(1, 1, 1, 1))) //there are  built in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.  the samples are from XNA times
   {
@@ -56,8 +76,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
   }
   else {
 
- //  return float4(1, 0, .1f, 0.7);  //this is for testing touch in the  fx by uncommenting this, and build,  works on dx and gl.. and adroid.. you will see a different result.  blending is still tricky.    but holes are ok and 100% parallel.  this effectively creates a single tranparent texture like a PNG at runtime.     the background will show though the channel and anthing drawn before.
-  return float4(0, 0, 0, 0);//    transparent.     
+   //return float4(1, 0, .1f, 0.7);  //this is for testing touch in the  fx by uncommenting this, and build,  works on dx and gl.. and adroid.. you will see a different result.  blending is still tricky.    but holes are ok and 100% parallel.  this effectively creates a single tranparent texture like a PNG at runtime.     the background will show though the channel and anthing drawn before.
+  return float4(1, 0, 0, 0);//    transparent.     
   }
 
  

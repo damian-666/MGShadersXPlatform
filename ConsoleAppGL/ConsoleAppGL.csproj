@@ -28,18 +28,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Content\" />
-	</ItemGroup>
-
-
-<ItemGroup>
-	  <MonoGameContentReference Include="..\MGCore\Content\Content.mgcb" Link="Content\Content.mgcb">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MonoGameContentReference>
+	  <ProjectReference Include="..\MGCore\MGCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\MGCore\MGCore.csproj" />
+	  <Folder Include="Content\" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<MonoGameContentReference Include="..\MGCore\Content\Content.mgcb" Link="Content\Content.mgcb">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MonoGameContentReference>
+	</ItemGroup>
+
 
 </Project>
