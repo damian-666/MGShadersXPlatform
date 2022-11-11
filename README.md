@@ -10,11 +10,37 @@ UPDATE:  Tried the bait and switch method with the Compute fork from NuGet  , th
     "MonoGame.Framework.DesktopGL" Version="3.8.1.303"> on the shraed dlls will work...   it was working but some chnages happened.. I think that fork needs to public a symbol proxy for hte dll. 
 
  it basically an updated but more complex verson of https://github.com/MonoGame/MonoGame.Samples that target netcore3.1 and netstandard 2.
+ 
+ 
+ COMPUTE FORK NOTES
+  
+ DOESNT HAVE IOS .. ANDROIND, DX, AND DESKTOPGL
+ 
+ https://github.com/cpt-max/Docs/blob/master/Migrating%20shaders%20to%20ShaderConductor.md
+ 
+ SHADERS NEEDED ALOT TO BUILD.  IT WORKS IN DX , CLIIPS  BUT IT COULD BE MUCH SIMPLER WITH SHADEER CONDUCTOR WHICH IS VERYH ACTIVE NOW.  HAS 15 PRS UNMERGED
+ MY WHOLE CLIP SHADER RENDER TARGET IS A WORKAROUDN FOR OLD WEIRDNESS.. WITH COMPUTER MABYE IT DONESTN NEED A SPRITE... I COUL D JUST DRAW VECTORS THOUGH THE CLIP IF I WANT.    S0 MIGHT WORK..   NAMES OF PARAMS MGHT WORK..
+ 
+ SAMPLING MIPMAP LEVELS COULD WORK..   COULD CLP MIPMAPED SPRITES...  DX10 HAS MANY FEATURES.. I DONT KNOW HOW THEY CONDUCT TO GL.
+ 
+ WOULD NEED MUCH INVESTIGATOIN..  I WOULD LKE TO USE 2D COMPUTE SHADERS FOR RAY CASTS , AND  2D FLUIDS. 
+ 
+ 
+ I DONT CARE ABOUT 3D GRAPHICS THAT MUCH BUT ANY SHADERS ARE WELCOME HERE.    2D ZOOMABLE IS JUST A PROJECTED VIEW OF 3D..    IM USING A PHYSICS AND VECTOR BASED SETUP I COULD INTRODUCE LATER IF ANYONE CARES ABOUT SCIENTIFIC VISUALIZATON USING MONOGAME.   I SIMULATE ROBOTS  AT 4000 FPS WIHT A STEADY FRAMERATE AND DO A, FLUID DYNAMICS , AND ADVANCED REVOLUTIONARY SHIT AND SHIP IT AND HAVE  ACTAUL FANS.   
+ 
+ BUT THERE ARE THINGS THAT EVERYONE SHOULD USE ... PRODUCER CONSUMER,  GPU COMPUTE TO SOME EXTENT  SIMD.. VECTOR INSTRINCS.. ALL THAT STUFF..   WE CAN SHARE HERE.
+ 
+ IF YOU ARE MAKNG AN ASTEROID TYPE OR LUNAR LANDER GAME WE HAVE ALOT IN COMMON AND CAN JUST SHARE GOOD PRACTICES.
+ 
+MONOGAME IS THE ONLY GAME IN TOWN RIGHT NOW.    I CANT USE ANYTHING ELSE.   THEY ARE TOO GENERAL AND LIMITING.  BUT ITS VERY VERY LOW LEVEL AND HARD.
 
- now its all net6.. but took over a week  to update t, just for the simple thing im doing.   Those original samples would be ideal to have more canonical and minimal structures.   mine demos a render target, a clip shader, transforms, and mutliple platfroms with one core game and one place for assets, also touching assets marketed embedded resource ( a workaroudn that might cause bloating if trimming is OFF, whihcc it is for now.. triggers immediate changes on build. 
+SILK AND MAUI ARE GONNA DIE.  PIECS OF SILK MIGHT HELP.. BUT THE WHOLE APPROACH AND ANDROND THINGS IS USING ANGLE AND IMAGE SHARP AND ITS LOOSING STEAM.
+
+
+
+ mine demos a render target, a clip shader, transforms, and mutliple platfroms with one core game and one place for assets, also touching assets marketed embedded resource ( a workaroudn that might cause bloating if trimming is OFF, whihcc it is for now.. triggers immediate changes on build. 
  
- Should deploy on all platfroms except consoles, that MONOGAME supports.  I would like to try the ComputeShader branch for physics stuff like fluids
- 
+ Should deploy on all platfroms except GAME consoles, that MONOGAME supports.  
  TESTED vs 2022 preview latest.   Net7.    android release / debug/  samsung arm64.. 
  
  the clip shader takes an image an a mask , it  allows holes.. basically if the mask is  not white, it wont draw that part of the testure to be clipped.  Alpha Blendning works but has regressing, differences in GL and im dont care for now it will get sorted out later.   the regression is related to multisampling i think, in Gl on desktop.
