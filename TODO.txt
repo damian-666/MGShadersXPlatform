@@ -1,1 +1,9 @@
-test Bait and witch works wiht Compute branch , not sure
+test Bait and switch works wiht Compute branch , not sure it doees
+
+test Uncommited PR in https://github.com/microsoft/ShaderConductor/pulls
+
+
+
+show something amazing ray tracing on GPU that gives data back to the CPU.    SDL functions from points in space
+
+sweep collision detection that doesnt really at any point in time in 2d.
