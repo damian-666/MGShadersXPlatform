@@ -52,7 +52,9 @@ all the game code and assets are in a libary tht is linked to GL as a proxy., bu
 
 Most of the other shaders were collected from various samples years old. But none of the projects built in both Gl and DX and worked without tons of extra adjustment.  The are old XNA samples everywhere that either use netstandard that is not supported with net6 /7 exes, a shahed code folder  which muyst build with each target..
 
-Basic Effect or stencils can probably do clipping but i couldn get it to work so i just made a shader cause i needed 
+Basic Effect or stencils can probably do clipping but i couldn ge
+
+t it to work so i just made a shader cause i needed 
 to learn how to write shaders that transpiles anyways.  
 
 
