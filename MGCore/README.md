@@ -4,6 +4,7 @@ you draw two textures, on will ChipShader a texture is provided and a mask textu
 Everything else is not drawn so the hole should be the backgronund coor.
 
 
+to move to net 7 just change Net6 to 7 in all the project files.
 
 e white pixes are considered transparent part  on the mask testure.  So the clip region is defined by white pixels,255,255,255,255.
 
