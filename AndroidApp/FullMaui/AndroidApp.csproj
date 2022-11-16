@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 	<TargetFramework>net7.0-android33.0</TargetFramework>
- <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
+   <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
 	  <ApplicationId>com.companyname.MGClipFXv2</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
@@ -15,7 +15,9 @@
     <Title>AndroidClipMGTest</Title>
     <UseMaui>true</UseMaui>
     <Nullable>warnings</Nullable>
-   
+    <TargetFrameworks>net7.0-android33.0</TargetFrameworks>
+    <IsPublishable>False</IsPublishable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
  
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -49,8 +51,6 @@
      <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
      <EnableLLVM>False</EnableLLVM>
      <AndroidEnableSGenConcurrent>True</AndroidEnableSGenConcurrent>
-     <AndroidUseAapt2>True</AndroidUseAapt2>
-     <AndroidPackageFormat>aab</AndroidPackageFormat>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
      <TrimMode>copyused</TrimMode>
@@ -58,8 +58,6 @@
      <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
      <EnableLLVM>False</EnableLLVM>
      <AndroidEnableSGenConcurrent>True</AndroidEnableSGenConcurrent>
-     <AndroidUseAapt2>True</AndroidUseAapt2>
-     <AndroidPackageFormat>aab</AndroidPackageFormat>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|ARM64'">
      <ApplicationTitle>MauiApp</ApplicationTitle>
@@ -77,27 +75,14 @@
      <ApplicationTitle>MauiApp</ApplicationTitle>
      <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
    </PropertyGroup>
-   <ItemGroup>
-     <AndroidJavaSource Remove="FullMaui\**" />
-     <AndroidLibrary Remove="FullMaui\**" />
-     <AndroidNativeLibrary Remove="FullMaui\**" />
-     <Compile Remove="FullMaui\**" />
-     <EmbeddedResource Remove="FullMaui\**" />
-     <JavaSourceJar Remove="FullMaui\**" />
-     <MauiCss Remove="FullMaui\**" />
-     <MauiXaml Remove="FullMaui\**" />
-     <None Remove="FullMaui\**" />
-     <ProguardConfiguration Remove="FullMaui\**" />
-     <TransformFile Remove="FullMaui\**" />
-   </ItemGroup>
 
   
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
     <PackageReference Include="Plugin.MauiMTAdmob" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Google.UserMessagingPlatform" Version="2.0.0.2" />
-
+    <PackageReference Include="Xamarin.Google.UserMessagingPlatform" Version="2.0.0.1" />
+    <PackageReference Include="Xamarin.GoogleAds.Consent.Sdk" Version="1.0.0.1" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

@@ -102,13 +102,30 @@ namespace MGCore
         protected override void Update(GameTime gameTime)
         {
 
+            //dont do anything here.   over 2 ms.. its on the UI thread.
+            //will try to use this  on key evens, now polling the key state, on a bk thread.. at up to 4000fps..
+            //using the Nez core method
+            //
+            //  TODO look at new MG keyboard events and set if its better.
+            //they should come in via interupt.   I personally dont care.  mines fine.  get key pressed and relesed events, and the state of the keys at any time.  virtual game pad on pc and map game pad to keyboard for now.
+
+            //TODO special analog stick events for mobiile, touch to do waht mouse can do, and or analog stick to do what mouse cna do... its now just a 8 way joystick wiht 8 positions, or neutral.  
+
+            //todo shou a producer / consumer pattern, timers and game loop that loads the CPU if needed.
+            //threds for physics , AI , other.   
+
+            // i get touch, unfied key handling and gamepad via custom input manager though.
+            // TODO show parts of Nez thats are great, lie the input manager and the sheduler thing.
+
+            //TODO use the new Mg Vectors and show some SIMD code and saving models with Vector2 in MG.. but, doing calculations via numerics when they are converted..  to Vector2<float>   then   copy back to Vector2 (MG) for drawig
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-
+            //render that last frame the CPU generated and copied to a display list or something,   while  the GPU is still rendering, that CPU game loop can work on the next frame, in parallel  and not block ui thread except in here.  .   the CPU can use total cores -1  ...whout scheduling conflics.   the CPU uses a timer and sleeps to whatever framerate the user or designer wants to cap at.. 
+            //TODO show how to settimerresolution  on windows , linxu , osx, android, ios,  to get the most out of the CPU and GPU.  but not waste users time on one thread, or heat and drain the battery when hyou dont need to have a 1 ms thread..  its expensive to have that.. 4 ms is fair.. 16 ms is unless.. that is the defualt on windows....  On windows the timer resolution is NOTGLOBAL annymore.  
             base.Draw(gameTime);
         }
 

@@ -53,9 +53,6 @@ namespace MGXPlatfrm.Android
 
         }
 
-        /*  TODO mabye this  https://stackoverflow.com/questions/68302342/guide-for-xamarin-google-usermessagingplatform
-         * 
-
         /*  used to work before.. wait this out..
         private void HideSystemUI()
         {
