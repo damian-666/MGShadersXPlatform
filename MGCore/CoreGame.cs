@@ -1,4 +1,4 @@
-﻿//#define RENDERTARGETTEST
+﻿#define RENDERTARGETTEST
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -68,7 +68,7 @@ namespace MGCore
             Window.AllowUserResizing=true;
 
 #if RENDERTARGETTEST
-            Window.Title+=" Render Target" and Clip";  
+            Window.Title+=" Render Target and Clip";  
             
             clip=Content.Load<Effect>("ClipShader");
 
@@ -155,7 +155,7 @@ namespace MGCore
        //     clip.Parameters[0].SetValue(catClipMask);
        ////       clip.Parameters[1].SetValue(spriteCat); ;
 
-             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
 //
           //    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
                
