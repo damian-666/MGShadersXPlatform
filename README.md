@@ -1,4 +1,4 @@
-The main point of this sample is to show how to organize code that uses netcore6 and targets both mobile and desktops.  "Write Once deploy Anywhere"   Its for a game or sim that could work on both a pc and a tablet or phone with keyboard, virtual gamepad, or simple touch, and custom UI..  There are no dependencies besides Monongame and NetCore.
+The main point of this sample is to show how to organize code that uses netcore6 and targets both mobile and desktops.  "Write Once deploy Anywhere"   Its for a game or sim that could work on both a pc and a tablet or phone with keyboard, virtual gamepad, or simple touch, and custom UI..  There are no dependencies besides Monongame and NetCore.  iT HAS A MASKING CLIP SHADER.   
 
 UPDATE:  Tried the bait and switch method with the Compute fork from NuGet  , there are issues:
 
@@ -11,31 +11,25 @@ UPDATE:  Tried the bait and switch method with the Compute fork from NuGet  , th
 
  it basically an updated but more complex verson of https://github.com/MonoGame/MonoGame.Samples that target netcore3.1 and netstandard 2.
  
- 
+
  COMPUTE FORK NOTES
   
- DOESNT HAVE IOS .. ANDROIND, DX, AND DESKTOPGL
+ DOESNT HAVE IOS TEETED .. ANDROIND, DX, AND DESKTOPGL WORK
  
  https://github.com/cpt-max/Docs/blob/master/Migrating%20shaders%20to%20ShaderConductor.md
  
- SHADERS NEEDED ALOT TO BUILD.  IT WORKS IN DX , CLIIPS  BUT IT COULD BE MUCH SIMPLER WITH SHADEER CONDUCTOR WHICH IS VERYH ACTIVE NOW.  HAS 15 PRS UNMERGED
- MY WHOLE CLIP SHADER RENDER TARGET IS A WORKAROUDN FOR OLD WEIRDNESS.. WITH COMPUTER MABYE IT DONESTN NEED A SPRITE... I COUL D JUST DRAW VECTORS THOUGH THE CLIP IF I WANT.    S0 MIGHT WORK..   NAMES OF PARAMS MGHT WORK..
+ SHADERS NEEDED ALOT TO BUILD.  IT WORKS IN DX , CLIPS  BUT IT COULD BE MUCH SIMPLER WITH SHADEER CONDUCTOR WHICH IS VERYH ACTIVE NOW.  HAS 15 PRS UNMERGED
+ MY WHOLE CLIP SHADER RENDER TARGET IS A WORKAROUDN FOR OLD WEIRDNESS.. WITH COMPUTER MABYE IT DONESTN NEED A SPRITE... I COUL D JUST DRAW VECTORS THOUGH THE CLIP IF I WANT.    S0 MIGHT WORK..   NAMES OF PARAMS MGHT WORK NOW..  I WAS NOT ABLE TO USE THE S0 REGISTER.
  
  SAMPLING MIPMAP LEVELS COULD WORK..   COULD CLP MIPMAPED SPRITES...  DX10 HAS MANY FEATURES.. I DONT KNOW HOW THEY CONDUCT TO GL.
  
- WOULD NEED MUCH INVESTIGATOIN..  I WOULD LKE TO USE 2D COMPUTE SHADERS FOR RAY CASTS , AND  2D FLUIDS. 
+ WOULD NEED MUCH INVESTIGATOIN..  I WOULD LKE TO USE 2D COMPUTE SHADERS FOR RAY CASTS , AND  MAYBE FOR PARICLES AND 2D FLUIDS. 
  
+ I DONT CARE ABOUT 3D GRAPHICS THAT MUCH BUT ANY SHADERS ARE WELCOME HERE.    2D ZOOMABLE IS JUST A PROJECTED VIEW OF 3D..   
  
- I DONT CARE ABOUT 3D GRAPHICS THAT MUCH BUT ANY SHADERS ARE WELCOME HERE.    2D ZOOMABLE IS JUST A PROJECTED VIEW OF 3D..    IM USING A PHYSICS AND VECTOR BASED SETUP I COULD INTRODUCE LATER IF ANYONE CARES ABOUT SCIENTIFIC VISUALIZATON USING MONOGAME.   I SIMULATE ROBOTS  AT 4000 FPS WIHT A STEADY FRAMERATE AND DO A, FLUID DYNAMICS , AND ADVANCED REVOLUTIONARY SHIT AND SHIP IT AND HAVE  ACTAUL FANS.   
- 
- BUT THERE ARE THINGS THAT EVERYONE SHOULD USE ... PRODUCER CONSUMER,  GPU COMPUTE TO SOME EXTENT  SIMD.. VECTOR INSTRINCS.. ALL THAT STUFF..   WE CAN SHARE HERE.
- 
- IF YOU ARE MAKNG AN ASTEROID TYPE OR LUNAR LANDER GAME WE HAVE ALOT IN COMMON AND CAN JUST SHARE GOOD PRACTICES.
+ BUT THERE ARE THINGS THAT EVERYONE SHOULD USE ... PRODUCER CONSUMER,  GPU COMPUTE TO SOME EXTENT  SIMD.. PRODUCTER /CONSUMER//
  
 MONOGAME IS THE ONLY GAME IN TOWN RIGHT NOW.    I CANT USE ANYTHING ELSE.   THEY ARE TOO GENERAL AND LIMITING.  BUT ITS VERY VERY LOW LEVEL AND HARD.
-
-SILK AND MAUI ARE GONNA DIE.  PIECS OF SILK MIGHT HELP.. BUT THE WHOLE APPROACH AND ANDROND THINGS IS USING ANGLE AND IMAGE SHARP AND ITS LOOSING STEAM.
-
 
 
  mine demos a render target, a clip shader, transforms, and mutliple platfroms with one core game and one place for assets, also touching assets marketed embedded resource ( a workaroudn that might cause bloating if trimming is OFF, whihcc it is for now.. triggers immediate changes on build. 
