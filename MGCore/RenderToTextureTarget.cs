@@ -16,6 +16,7 @@ namespace MGCore
         {
        //     mmm
        ///grrr
+       // blah blah blah
             var renderTargetViewport = gr.RenderTargetCount == 0 ? null : gr.GetRenderTargets()[0].RenderTarget;
 
 
