@@ -38,7 +38,7 @@ namespace MGCore
 
 
             gr.Clear(Color.Transparent);  //this is needed if we discard contents which seems like the simplest way..
-
+            //tets
 
             clip.Parameters[0].SetValue(mask);
             clip.Parameters[1].SetValue(tex); ;
