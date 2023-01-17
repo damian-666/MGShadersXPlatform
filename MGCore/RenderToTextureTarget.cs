@@ -14,7 +14,8 @@ namespace MGCore
     {
         public static Texture2D GetClippedTexture(GraphicsDevice gr, Texture2D tex, Texture2D mask, Effect clip)// SpriteBatch spriteBatch)
         {
-
+       //     mmm
+       ///grrr
             var renderTargetViewport = gr.RenderTargetCount == 0 ? null : gr.GetRenderTargets()[0].RenderTarget;
 
 
@@ -38,8 +39,9 @@ namespace MGCore
 
 
             gr.Clear(Color.Transparent);  //this is needed if we discard contents which seems like the simplest way..
-            //tets
+            //tetskjjjkjl
 
+           //dfgdfgdfgdfgdf
             clip.Parameters[0].SetValue(mask);
             clip.Parameters[1].SetValue(tex); ;
 
