@@ -144,7 +144,7 @@ namespace MGCore
 
 
 #else
-
+//TODO try clipping directly using advice from link in task about masks from community, t1,t2 registers , pass just the clip mask. draw through the efffect, no rendertarget needed
                 clip.Parameters[0].SetValue(catClipMask);
               clip.Parameters[1].SetValue(spriteCat); ;
 

@@ -15,18 +15,22 @@
     <Title>AndroidClipMGTest</Title>
   
     <Nullable>warnings</Nullable>
+  
   </PropertyGroup>
  
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)'=='Release'">  
-	   <DefineConstants>$(DefineConstants)</DefineConstants> 
 
-  </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-     <PublishTrimmed>False</PublishTrimmed>
+   <PropertyGroup Condition="'$(Configuration)'=='Release'">
+	   <RunAOTCompilation>False</RunAOTCompilation>
+	   <PublishTrimmed>False</PublishTrimmed>
+	      <DefineConstants>$(DefineConstants)</DefineConstants> 
+	   <DebugType>none</DebugType>   
    </PropertyGroup>
+
+
+
 
   
   <ItemGroup>
