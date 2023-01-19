@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFramework>net7.0</TargetFramework>
+	<TargetFramework>net7.0-android31</TargetFramework>
     <OutputType>Exe</OutputType>
-	  <ApplicationId>com.companyname.MGClipFXv2</ApplicationId>
+	  <ApplicationId>com.companyname.MGClipFXv3</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <PackageIcon>Icon.png</PackageIcon>
@@ -15,7 +15,10 @@
   
     <Nullable>warnings</Nullable>
   
-    <IsPublishable>True</IsPublishable>
+    <IsPublishable>False</IsPublishable>
+  
+    <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
+  
   
   </PropertyGroup>
  
@@ -29,16 +32,10 @@
 	      <DefineConstants>$(DefineConstants)</DefineConstants> 
 	   <DebugType>none</DebugType>   
    </PropertyGroup>
-
-
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
-     <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
-   </PropertyGroup>
+    
 
 
 
-
-  
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
