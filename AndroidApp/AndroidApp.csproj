@@ -15,7 +15,7 @@
   
     <Nullable>warnings</Nullable>
   
-    <IsPublishable>False</IsPublishable>
+    <IsPublishable>True</IsPublishable>
   
     <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
   
