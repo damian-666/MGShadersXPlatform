@@ -16,6 +16,8 @@
   
     <Nullable>warnings</Nullable>
   
+    <IsPublishable>True</IsPublishable>
+  
   </PropertyGroup>
  
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -27,6 +29,11 @@
 	   <PublishTrimmed>False</PublishTrimmed>
 	      <DefineConstants>$(DefineConstants)</DefineConstants> 
 	   <DebugType>none</DebugType>   
+   </PropertyGroup>
+
+
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release'">
+     <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
    </PropertyGroup>
 
 

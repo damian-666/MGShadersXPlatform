@@ -56,8 +56,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
   }
   else {
 
- //  return float4(1, 0, .1f, 0.7);  //this is for testing touch in the  fx by uncommenting this, and build,  works on dx and gl.. and adroid.. you will see a different result.  blending is still tricky.    but holes are ok and 100% parallel.  this effectively creates a single tranparent texture like a PNG at runtime.     the background will show though the channel and anthing drawn before.
-  return float4(0, 0, 0, 0);//    transparent.     
+   return float4(1, 0, 1, 0.7);  //this is for testing touch in the  fx by uncommenting this, and build,  works on dx and gl.. and adroid.. you will see a different result.  blending is still tricky.    but holes are ok and 100% parallel.  this effectively creates a single tranparent texture like a PNG at runtime.     the background will show though the channel and anthing drawn before.
+  //return float4(0, 0, 0, 0);//    transparent.     
   }
 
  
