@@ -1,4 +1,4 @@
-﻿#define RENDERTARGETTEST
+﻿///#define RENDERTARGETTEST
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -145,14 +145,14 @@ namespace MGCore
 
 #else
 //TODO try clipping directly using advice from link in task about masks from community, t1,t2 registers , pass just the clip mask. draw through the efffect, no rendertarget needed
-                clip.Parameters[0].SetValue(catClipMask);
-              clip.Parameters[1].SetValue(spriteCat); ;
+                clip.Parameters[0].SetValue(striteClipMask);
+         //     clip.Parameters[1].SetValue(spriteCat); ;
 
              //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
 //
               spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
                
-              spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
+              spriteBatch.Draw(spritetoClip, new Vector2(100,100), Color.White); ;
 
            //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
