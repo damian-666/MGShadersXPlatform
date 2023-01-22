@@ -1,9 +1,10 @@
-﻿///#define RENDERTARGETTEST
+﻿//#define RENDERTARGETTEST
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
+using System.Threading.Tasks;
 
 namespace MGCore
 {
@@ -55,9 +56,11 @@ namespace MGCore
 
 
             //we always have a Device by here
-            GraphicsDevice.PresentationParameters.MultiSampleCount           // set to windows limit, if gpu doesn't support it, monogame will autom. scale it down to the next supported level
-            =GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
-
+            GraphicsDevice.PresentationParameters.MultiSampleCount=0;
+            // set to windows limit, if gpu doesn't support it,
+            // monogame will autom. scale it down to the next supported 
+          //      GraphicsDeviceManager.PreferMultiSamplingMsaaSampleLimit : 0;
+     //       0,
 
 
             Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL");
@@ -113,7 +116,8 @@ namespace MGCore
         Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Yellow);
+            GraphicsDevice.Clear(Color.Orange);
+       
 
 
 #if RENDERTARGETTEST
@@ -144,24 +148,47 @@ namespace MGCore
 
 
 #else
-//TODO try clipping directly using advice from link in task about masks from community, t1,t2 registers , pass just the clip mask. draw through the efffect, no rendertarget needed
-                clip.Parameters[0].SetValue(striteClipMask);
-         //     clip.Parameters[1].SetValue(spriteCat); ;
+            //TODO try clipping directly using advice from link in task about masks from community, t1,t2 registers , pass just the clip mask. draw through the efffect, no
+            //rendertarget needed
 
-             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
-//
-              spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
-               
-              spriteBatch.Draw(spritetoClip, new Vector2(100,100), Color.White); ;
 
-           //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
-           //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
-           //sending blend mode sourcealpha might work but this is fine
-               spriteBatch.End();
+//            GraphicsDevice.Textures[1]=striteClipMask;
+//            GraphicsDevice.SamplerStates[1]=SamplerState.PointClamp;
+
+//            clip.Parameters[0].SetValue(striteClipMask);
+//             clip.Parameters[1].SetValue(spriteCat); ;
+
+//             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+////
+//         spriteBatch.Begin(SpriteSortMode.Deferred, //BlendState.AlphaBlend, null, null, null, clip);
+
+
+//              spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, null, null, clip);
+
+            Rectangle rct = GraphicsDevice.Viewport.Bounds;
+
+            //            spriteBatch.Draw(spritetoClip,rct, Color.Transparent); ;
+
+            //           //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
+            //           //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
+            //           //sending blend mode sourcealpha might work but this is fine
+            //               spriteBatch.End();
+
+
+            GraphicsDevice.Clear(Color.Orange);
+            GraphicsDevice.SamplerStates[1]=SamplerState.PointWrap;
+
+            GraphicsDevice.SamplerStates[0]=SamplerState.PointClamp;
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, clip);
+            clip.Parameters[0].SetValue(striteClipMask);
+            spriteBatch.Draw(spritetoClip, rct, Color.White);
+            spriteBatch.End();
+
+ 
 
 #endif
 
-        
+
         }
 
 
