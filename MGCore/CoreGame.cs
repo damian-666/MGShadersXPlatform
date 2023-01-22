@@ -2,7 +2,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Threading.Tasks;
 
@@ -24,6 +24,18 @@ namespace MGCore
 
         public static new CoreGame Instance;
 
+
+        //---- Gloom effect variables -------------
+        private GraphicsDeviceManager graphics;
+        GraphicsDevice gpu;
+        private RenderTarget2D mainTarget, renderTarg1;
+        private Texture2D _image;
+        private Rectangle deskRect;
+        private float pulse, pulse_dir = 0.1f; // pulse controls saturation for bloom and pulse_dir control to increase or decreae for pulse (Causng it to pulse).
+
+        Bloom bloom;
+
+
         public CoreGame()
         {
             Instance=this;
@@ -36,6 +48,7 @@ namespace MGCore
 
         protected override void Initialize()
         {
+            SetGraphicTarget();
             base.Initialize();
         }
 
@@ -51,6 +64,9 @@ namespace MGCore
         protected override void LoadContent()
         {
 
+            bloom = new Bloom(gpu, spriteBatch);
+            bloom.LoadContent(Content);
+            _image = Content.Load<Texture2D>("surge");
 
             base.LoadContent();
 
@@ -104,7 +120,10 @@ namespace MGCore
 
         protected override void Update(GameTime gt)
         {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
 
+            SetBloomPulse();
             //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
             base.Update(gt); //updates the Input keys
 
@@ -184,14 +203,54 @@ namespace MGCore
             spriteBatch.Draw(spritetoClip, rct, Color.White);
             spriteBatch.End();
 
- 
+
 
 #endif
 
+            DrawWithBloom();
 
         }
 
 
+        private void DrawWithBloom()
+        {
+            gpu.SetRenderTarget(mainTarget);
+
+            bloom.Draw(_image, mainTarget);
+
+            gpu.SetRenderTarget(null);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque);
+            spriteBatch.Draw(mainTarget, deskRect, new Color (1, 1, 1, 0.5f));
+            spriteBatch.End();
+
+        }
+        private void SetGraphicTarget()
+        {
+            graphics = GraphicsDeviceManager;
+            graphics.PreferredDepthStencilFormat = DepthFormat.None;
+            //deskRect.Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            //deskRect.Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            deskRect.Width = 800;
+            deskRect.Height = 600;
+            graphics.PreferredBackBufferWidth = deskRect.Width;
+            graphics.PreferredBackBufferHeight = deskRect.Height;
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            gpu = GraphicsDevice;
+            //graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+            PresentationParameters pp = GraphicsDevice.PresentationParameters;
+            spriteBatch = new SpriteBatch(gpu);
+            mainTarget = new RenderTarget2D(gpu, 800, 600, false, pp.BackBufferFormat, DepthFormat.Depth24);
+        }
+
+        private void SetBloomPulse()
+        {
+            // Adjust saturation - make it pulse:
+            pulse += pulse_dir;
+            if (pulse > 4) pulse_dir = -0.1f;
+            if (pulse < 2) pulse_dir = 0.1f;
+            bloom.BaseIntensity = pulse;
+        }
     }
 
 }
