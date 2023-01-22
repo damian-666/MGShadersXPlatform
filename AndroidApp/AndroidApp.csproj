@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFramework>net7.0-android31</TargetFramework>
+	<TargetFramework>net7.0-android33.0</TargetFramework>
     <OutputType>Exe</OutputType>
 	  <ApplicationId>com.companyname.MGClipFXv3</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>

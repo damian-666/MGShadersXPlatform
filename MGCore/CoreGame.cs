@@ -79,7 +79,12 @@ namespace MGCore
 
             spritetoClip=Content.Load<Texture2D>("surge");
 
+#if RENDERTARGETTEST
+
+  clip=Content.Load<Effect>("ClipShaderSpriteTarget");
+#else
             clip=Content.Load<Effect>("ClipShader");
+#endif
 
             striteClipMask=Content.Load<Texture2D>("surgeclip");
         }
