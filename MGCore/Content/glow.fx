@@ -72,7 +72,7 @@ float4 GaussianBlur(VSOutput input) : COLOR
 	float4 BloomCombine(VSOutput input) : COLOR0
 	{
 	//Look up the bloom and original base image colors.
-	float base = tex2D(TextureSampler, input.texCoord);
+	float4 base = tex2D(TextureSampler, input.texCoord);
 	float4 bloom = tex2D(BloomSampler, input.texCoord);
 
 	//Adjust color saturation and intensity.
