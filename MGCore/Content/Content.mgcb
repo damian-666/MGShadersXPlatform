@@ -19,6 +19,14 @@
 /processorParam:DebugMode=Auto
 /build:ClipShader.fx
 
+
+
+#begin ClipShaderSpriteTarget.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:ClipShaderSpriteTarget.fx
+
 #begin Console16.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

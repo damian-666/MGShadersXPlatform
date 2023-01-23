@@ -1,4 +1,5 @@
 ﻿//#define RENDERTARGETTEST
+#define BLOOMTEST  //TODO  ///mabye do this to lines..
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -127,8 +128,9 @@ namespace MGCore
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            SetBloomPulse();
+#if BLOOMTEST
+                    SetBloomPulse();
+#endif
             //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
             base.Update(gt); //updates the Input keys
 
@@ -171,7 +173,7 @@ namespace MGCore
             spriteBatch.End();
 
 
-#else
+#elif (!BLOOMTEST)
             //TODO try clipping directly using advice from link in task about masks from community, t1,t2 registers , pass just the clip mask. draw through the efffect, no
             //rendertarget needed
 
@@ -210,9 +212,12 @@ namespace MGCore
 
 
 
-#endif
+#else
 
-            DrawWithBloom();
+          DrawWithBloom();
+
+#endif
+            
 
         }
 
