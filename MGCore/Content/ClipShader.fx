@@ -39,6 +39,14 @@ float4 MainPS(VertexShaderOutput input) : COLOR
   // if (all(colorM)) //there are  built in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.  the samples are from XNA times
  //   if (color.argb == 0)//there are  built in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.  the samples are from XNA times
   
+    clip(colorM.a == 0) ? :float4(-1,-1,-1,-1);
+    return color;
+   // return ret;
+  //  ret.a = ret.a  * colorM.a;
+    ret.a = colorM.a;
+    return ret;
+ //   return color.rgba * colorM.r;
+   // return color;
      //if (colorM.b ==1) //there are  built in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.  the samples are from XNA times
       //  if (all(colorM) == all(float4(1, 1, 1, 1))) //there are  built in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.  the samples are from XNA times
     //if (colorM.r   == float1(1)) //there are  built in stencis, and other clipping stuff in Basic effect but I couldnt get them to work.  the samples are from XNA times  
@@ -63,6 +71,6 @@ technique SpriteDrawing
 {
 	pass P0
 	{
-		PixelShader = compile PS_SHADERMODEL MainPS();
+        PixelShader = compile PS_SHADERMODELMainPS();
 	}
 }
