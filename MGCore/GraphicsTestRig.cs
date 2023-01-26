@@ -41,8 +41,6 @@ namespace MGCore
         }
 
 
-
-
         public static bool IsDirectX = true;
 
 
