@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MGCore
 {
@@ -95,7 +96,9 @@ namespace MGCore
             glow_fx.Parameters["BaseSaturation"].SetValue(BaseSaturation);
             glow_fx.Parameters["BloomTexture"].SetValue(renderTarget1);
             Viewport viewPort = gpu.Viewport;
-            DrawFullScreenQuad(source, viewPort.Width, viewPort.Height); // now desRT is renderer an dready to be used.
+           
+            //DrawFullScreenQuad(source, viewPort.Width, viewPort.Height); // now desRT is renderer and ready to be used.
+            DrawFullScreenQuad(InsolateBloomColor(source), viewPort.Width, viewPort.Height); // now desRT is renderer and ready to be used.
 
         }
 
@@ -172,8 +175,27 @@ namespace MGCore
         }
 
 
-
-
+        // Set transparency to the rest of the colors
+        public Texture2D InsolateBloomColor(Texture2D _image)
+        {
+            Color[] pixels = new Color[_image.Width * _image.Height];
+            _image.GetData(pixels);
+            Texture2D newImage;
+            // Define the color that should be made transparent
+            Color bloomedColor = Color.Blue;
+            Color transparentColor = new Color (0f, 0, 0, 0f);
+            // Iterate through the pixels and make transparentColor pixels transparent
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                if (pixels[i] != bloomedColor)
+                {
+                    pixels[i] = transparentColor; 
+                }
+            }
+            _image.SetData(pixels);
+            newImage = _image;
+            return newImage;
+        }
 
 
 
