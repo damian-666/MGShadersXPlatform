@@ -9,19 +9,23 @@ using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
-    /// <summary>
-    /// A test put the glowing bloom effect on a sprite
-    /// </summary>
-    public class BloomTest : IDrawTest
+    public class Invert : IDrawTest
     {
-        public void Draw(GameTime time)
-        {
-      
-        }
-
+        Effect invert;
         public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
         {
-
+            invert=cm.Load<Effect>("Invert");
         }
+
+
+
+
+
+        public void Draw(GameTime time)
+        {
+            //todo
+        }
+
     }
+    
 }

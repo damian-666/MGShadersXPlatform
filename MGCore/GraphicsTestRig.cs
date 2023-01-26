@@ -1,5 +1,4 @@
-﻿#define RENDERTARGETTEST
-
+﻿
 using MGCore.DrawTests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,13 +49,11 @@ namespace MGCore
         protected override void LoadContent()
         {
 
-
-
-
             base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
+            
 
-
-            CurrentDrawTest=new NeonLineTest();
+            CurrentDrawTest=new Invert();
+            
             CurrentDrawTest.Initialize(GraphicsDevice, GraphicsDeviceManager, Content);
 
             //todo move this to eahch test... 
@@ -66,34 +63,13 @@ namespace MGCore
             //=GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
 
 
-
             Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL"+CurrentDrawTest.GetType().Name);
 
 
             Window.AllowUserResizing=true;
 
 
-#if MOVE
-#if RENDERTARGETTEST
-            Window.Title+=" Render Target";
-#endif
 
-            spriteBatch=new SpriteBatch(GraphicsDevice);
-
-            // toso move this stuff to each test.. 
-
-            //       shader = Content.Load<Effect>("Invert");
-
-            spritetoClip=Content.Load<Texture2D>("surge");
-
-            clip=Content.Load<Effect>("ClipShader");
-
-            striteClipMask=Content.Load<Texture2D>("surgeclip");
-        }
-
-
-        Effect clip;
-#endif
         }
         protected override void OnActivated(object sender, EventArgs args)
         {
@@ -158,8 +134,6 @@ namespace MGCore
 
 
 
-
-        Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
 

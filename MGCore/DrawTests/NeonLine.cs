@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
-    internal class NeonLineTest : IDrawTest
+    public class NeonLine : IDrawTest
     {
         public void Draw(GameTime time)
         {

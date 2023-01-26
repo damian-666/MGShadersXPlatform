@@ -17,12 +17,12 @@ namespace MGCore.DrawTests
     {
         public void Draw(GameTime time)
         {
-            throw new NotImplementedException();
+      
         }
 
         public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
         {
-            throw new NotImplementedException();
+   
         }
     }
 }

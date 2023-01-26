@@ -11,8 +11,10 @@ namespace MGCore.DrawTests
 {
 
 
-    
-    internal interface IDrawTest
+    /// <summary>
+    /// A test that inverts the colors in the spite
+    /// </summary>
+    public interface IDrawTest
     {
         /// <summary>
         /// load Effects from content set up se devise or render target if needed... 
@@ -21,7 +23,6 @@ namespace MGCore.DrawTests
         /// <param name="gm"></param>
         void Initialize( GraphicsDevice dev, GraphicsDeviceManager    gm, ContentManager cm);// 
         void Draw(GameTime time);
-
 
     }
 }

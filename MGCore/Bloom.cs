@@ -11,6 +11,9 @@ using System.Diagnostics;
 
 namespace MGCore
 {
+    
+    
+    #if TODOMOVEotocassl
     internal class Bloom
     {
         GraphicsDevice gpu;
@@ -185,4 +188,5 @@ namespace MGCore
 
 
     }
+#endif
 }
