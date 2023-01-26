@@ -20,8 +20,6 @@ namespace MGCore
 
             RenderTarget2D currentRenderTarget;
 
-
-
             Texture2D clippedTex = null;
 
 
