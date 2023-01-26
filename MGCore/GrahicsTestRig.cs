@@ -15,7 +15,7 @@ namespace MGCore
     /// Basic UI and core app level functions for YOUR  game .  for mobile and desktop platforms, built over the general purpose   XNA Game based code
     /// The platfrom dependent parts over this are designed to be as thin as possible, with all shared functionality and game asssets in here
     /// </summary>
-    public class CoreGame : MGGameCore
+    public class GrahicsTestRig : MGGameCore
     {
 
         //global settings
@@ -23,7 +23,7 @@ namespace MGCore
         internal const int MsaaSampleLimit = 32;
 
 
-        public static new CoreGame Instance;
+        public static new GrahicsTestRig Instance;
 
 
         //---- Gloom effect variables -------------
@@ -37,7 +37,7 @@ namespace MGCore
         Bloom bloom;
 
 
-        public CoreGame()
+        public GrahicsTestRig()
         {
             Instance=this;
         }

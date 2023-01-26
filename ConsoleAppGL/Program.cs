@@ -12,7 +12,7 @@ using MGCore;
         @"\ConsoleAppGL.exe";
     start.WindowStyle=System.Diagnostics.ProcessWindowStyle.Hidden; //Hides GUI
     start.CreateNoWindow=true; //Hides console  //TODO doesnt work always...    todo save window pos but this requires dev branche fixes...
-    var game = new CoreGame();
-    CoreGame.IsDirectX = false;
+    var game = new GrahicsTestRig();
+    GrahicsTestRig.IsDirectX = false;
     game.Run();  //this starts the render loop
 }

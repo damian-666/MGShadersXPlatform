@@ -12,7 +12,7 @@
     <None Remove="Content\obj\**" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Content.mgcb" />
+    <EditorConfigFiles Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303">

@@ -76,7 +76,7 @@ namespace MGCore
         {
             string effectnamebase = "";
 
-            if (!CoreGame.IsDirectX && !string.IsNullOrEmpty(samplerName))  //in open gl samplers and textures are coupled together so names are combined
+            if (!GrahicsTestRig.IsDirectX && !string.IsNullOrEmpty(samplerName))  //in open gl samplers and textures are coupled together so names are combined
             {
                 effectnamebase = samplerName + "+";
             }
@@ -95,10 +95,10 @@ namespace MGCore
                //     false,
 
 
-               CoreGame.IsDirectX,  ///use mip maps in dx tho.. in gl for andord stll mg38.1  not working, alos cant  antialialis line w mipmap on
+               GrahicsTestRig.IsDirectX,  ///use mip maps in dx tho.. in gl for andord stll mg38.1  not working, alos cant  antialialis line w mipmap on
 
 
-               CoreGame.IsDirectX//    
+               GrahicsTestRig.IsDirectX//    
                ? SurfaceFormat.Bgra32
 
                 :
