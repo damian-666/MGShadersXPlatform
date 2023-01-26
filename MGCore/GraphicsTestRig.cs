@@ -20,9 +20,6 @@ namespace MGCore
     public class GraphicsTestRig : MGGameCore
     {
 
-        //global settings
-
-        internal const int MsaaSampleLimit = 32;
 
 
         public static new GraphicsTestRig Instance;
@@ -37,8 +34,6 @@ namespace MGCore
         }
 
 
-        static public bool IsDirectX = false;
-
 
 
         protected override void Initialize()
@@ -47,21 +42,18 @@ namespace MGCore
         }
 
 
-        Texture2D spritetoClip;
 
 
+        public static bool IsDirectX = true;
 
-        SpriteBatch spriteBatch;
 
-
-        Texture2D striteClipMask;
         protected override void LoadContent()
         {
 
 
 
 
-            base.LoadContent();
+            base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
 
 
             CurrentDrawTest=new NeonLineTest();
@@ -69,17 +61,19 @@ namespace MGCore
 
             //todo move this to eahch test... 
 
-            //we always have a Device by here
-            GraphicsDevice.PresentationParameters.MultiSampleCount           // set to windows limit, if gpu doesn't support it, monogame will autom. scale it down to the next supported level
-            =GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
+            ////we always have a Device by here
+            //GraphicsDevice.PresentationParameters.MultiSampleCount           // set to windows limit, if gpu doesn't support it, monogame will autom. scale it down to the next supported level
+            //=GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
 
 
 
-            Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL");
+            Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL"+CurrentDrawTest.GetType().Name);
 
 
             Window.AllowUserResizing=true;
 
+
+#if MOVE
 #if RENDERTARGETTEST
             Window.Title+=" Render Target";
 #endif
@@ -99,8 +93,8 @@ namespace MGCore
 
 
         Effect clip;
-
-
+#endif
+        }
         protected override void OnActivated(object sender, EventArgs args)
         {
             base.OnActivated(sender, args);
@@ -110,7 +104,7 @@ namespace MGCore
 
         protected override void BeginRun()
         {
-         
+
             //either use ui or just run thoug all the tests with one sec deal or somehting .. or if next button presseed.. or scfeen touched .. 
 
         }
@@ -122,7 +116,7 @@ namespace MGCore
         public bool RunTest(int i)
         {
 
-            bool success=true;
+            bool success = true;
             try
             {
 
@@ -130,19 +124,19 @@ namespace MGCore
 
             catch (Exception ex)
             {
-                Debug.Write(" test   " + i +  " failed " + ex.Message);
-                success = false;
+                Debug.Write(" test   "+i+" failed "+ex.Message);
+                success=false;
 
             }
             return success;
 
         }
 
-    /// <summary>
-    /// todo use reflection or sometihgin to make a menu for droid to pick a rest..then put the code to just build a menu or set of buttson.. then call this.. 
-    /// </summary>
-    /// <param name="className"></param>
-    public  bool RunTest(string  className)
+        /// <summary>
+        /// todo use reflection or sometihgin to make a menu for droid to pick a rest..then put the code to just build a menu or set of buttson.. then call this.. 
+        /// </summary>
+        /// <param name="className"></param>
+        public bool RunTest(string className)
         {//todo relfect?
 
             //so its eash just add a class and it will add ui and test
@@ -152,11 +146,13 @@ namespace MGCore
 
 
 
-protected override void Update(GameTime gt)
+        protected override void Update(GameTime gt)
         {
 
             //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
             base.Update(gt); //updates the Input keys
+
+            //tOOD maeybe if free 1, 2 three on space to next test..ccyle back
 
         }
 
@@ -166,8 +162,10 @@ protected override void Update(GameTime gt)
         Texture2D clippedTex = null;
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Yellow);
 
+            CurrentDrawTest.Draw(gameTime);
+
+#if MOVE
 
 #if RENDERTARGETTEST
             if (clippedTex==null)
@@ -214,7 +212,7 @@ protected override void Update(GameTime gt)
 
 #endif
 
-        
+#endif
         }
 
 
