@@ -26,13 +26,13 @@ namespace MGXPlatfrm.Android
     {
 
         private View _view;
-        private CoreGame _game;
+        private GraphicsTestRig _game;
 
 
          static Activity1()//set these before any dependencies get called
         {
          
-            CoreGame.IsDirectX = false;//
+            GraphicsTestRig.IsDirectX = false;//
         }
 
         protected override void OnCreate(Bundle bundle)
@@ -40,7 +40,7 @@ namespace MGXPlatfrm.Android
             base.OnCreate(bundle);
 
              
-            _game = new CoreGame();
+            _game = new GraphicsTestRig();
 
             _view = _game.Services.GetService(typeof(View)) as View;
 

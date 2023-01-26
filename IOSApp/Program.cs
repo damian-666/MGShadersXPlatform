@@ -14,7 +14,7 @@ namespace IOSApp
 
         internal static void RunGame()
         {
-            var game=new CoreGame();
+            var game=new GraphicsTestRig();
             game.Run();
         }
 
