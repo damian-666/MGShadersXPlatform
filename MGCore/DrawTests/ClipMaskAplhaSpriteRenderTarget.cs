@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MGCore.DrawTests
 {
     /// <summary>
-    ///  this is the code that use RendertoTextureTarget, i can prolly do this. uinsg the old shader .  it loads one or two textures... and returns a sprite Textre that has alpha channels intact.. the alpha is eithe draw or not.. it doenst have to blend.   Bledning alpha isnt a consern at all its tiehr 255 or 0.. its a hole... or nothing for the use case im thinking of.  also consider surfaces mith not have full 32 bti rgba not using alha blend is probalby good.
+    ///  this is the code that use RendertoTextureTarget, i can prolly do this. i the old shader .  it loads one or two textures... and returns a sprite Tueure that has alpha channels intact.. the alpha is eithe draw or not.. it doens't have to blend.   Blending alpha isnt a concern at all its  255 or 0.. its a hole... or nothing for the use case im thinking of.  also consider surfaces with not have full 32 bti rbg not using alpha blend is probably good.   mabye can  clip using key color instead
     /// </summary>
     public class ClipMaskAlphaSpriteRenderTarget : IDrawTest
     {
