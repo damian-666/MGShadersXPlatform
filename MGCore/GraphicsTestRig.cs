@@ -125,7 +125,6 @@ namespace MGCore
         {
 
             //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
-            CurrentDrawTest.Update(gt,Content);
             base.Update(gt); //updates the Input keys
 
             //tOOD maeybe if free 1, 2 three on space to next test..ccyle back

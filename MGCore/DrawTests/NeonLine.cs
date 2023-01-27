@@ -20,9 +20,6 @@ namespace MGCore.DrawTests
         {
             throw new NotImplementedException();
         }
-        public void Update(GameTime gt, ContentManager cm)
-        {
-
-        }
+        
     }
 }
