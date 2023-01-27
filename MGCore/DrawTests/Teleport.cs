@@ -15,7 +15,7 @@ namespace MGCore.DrawTests
         SpriteBatch spriteBatch;
         Texture2D texture;
         Effect  _effectTeleport;
-        private Vector2 _pos00;
+        private Rectangle deskRect;
         private float _amount = 1;
         private float _dir = -1;
 
@@ -24,10 +24,11 @@ namespace MGCore.DrawTests
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
             _effectTeleport = cm.Load<Effect>("EffectTeleport");
-           
 
-            _pos00 = new(100, 100);
-          
+
+            deskRect.Width = 500;
+            deskRect.Height = 500;
+
         }
 
 
@@ -40,22 +41,13 @@ namespace MGCore.DrawTests
 
         public void Draw(GameTime time)
         {
-            //todo
-            DrawInverted();
-        }
-
-
-        private void DrawInverted()
-        {
-
-
-            //Draw a teleport effect image
+            //Draw a teleport effect image (Need the Update method to be run)
 
             spriteBatch.Begin(effect: _effectTeleport);
-            spriteBatch.Draw(texture, _pos00, Color.White);
+            spriteBatch.Draw(texture, deskRect, Color.White);
             spriteBatch.End();
-
         }
+      
     }
 
 }

@@ -54,7 +54,7 @@ namespace MGCore
             CurrentDrawTest=new Invert();
             
             CurrentDrawTest.Initialize(GraphicsDevice, GraphicsDeviceManager, Content);
-
+            
             //todo move this to eahch test... 
 
             ////we always have a Device by here
