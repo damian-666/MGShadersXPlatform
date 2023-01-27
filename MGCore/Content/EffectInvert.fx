@@ -28,8 +28,8 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
     float4 col = tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color;
-	
     col.rgb = 1 - col.rgb; // Invert color
+    col.a = col.a;
     return col;
 
 }
