@@ -3,7 +3,7 @@
 
 /outputDir:bin/$(Platform)
 /intermediateDir:obj/$(Platform)
-
+/platform:Windows
 /config:
 /profile:Reach
 /compress:False
@@ -18,8 +18,6 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:ClipShader.fx
-
-
 
 #begin ClipShaderSpriteTarget.fx
 /importer:EffectImporter
@@ -53,17 +51,35 @@
 /processorParam:DebugMode=Auto
 /build:glow.fx
 
-#begin Invert.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Invert.fx
+#begin Glow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Glow.png
 
 #begin MTextureVertPix.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:MTextureVertPix.fx
+
+#begin orb-red.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:orb-red.png
 
 #begin Score.spritefont
 /importer:FontDescriptionImporter
@@ -83,19 +99,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprite-light.png
-
-
-#begin Glow.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Glow.png
 
 #begin surge.png
 /importer:TextureImporter
@@ -120,6 +123,36 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:surgeclip.png
+
+#begin TestEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:TestEffect.fx
+
+#begin TestEffect2.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:TestEffect2.fx
+
+#begin TestEffect3.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:TestEffect3.fx
+
+#begin TestEffect4.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:TestEffect4.fx
+
+#begin TestEffect5.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:TestEffect5.fx
 
 #begin TwoTextureSamplerX.fx
 /importer:EffectImporter

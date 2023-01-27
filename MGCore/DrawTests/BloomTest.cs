@@ -16,10 +16,14 @@ namespace MGCore.DrawTests
     {
         public void Draw(GameTime time)
         {
-      
+
         }
 
         public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
+        {
+
+        }
+        public void Update(GameTime gt, ContentManager cm)
         {
 
         }

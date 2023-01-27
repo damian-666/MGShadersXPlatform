@@ -22,6 +22,7 @@ namespace MGCore.DrawTests
         /// <param name="dev"></param>
         /// <param name="gm"></param>
         void Initialize( GraphicsDevice dev, GraphicsDeviceManager    gm, ContentManager cm);// 
+        void Update(GameTime gt, ContentManager cm);
         void Draw(GameTime time);
 
     }
