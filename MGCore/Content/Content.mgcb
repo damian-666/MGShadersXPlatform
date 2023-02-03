@@ -45,6 +45,12 @@
 /processorParam:DebugMode=Auto
 /build:EffectFading.fx
 
+#begin EffectGlow.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:EffectGlow.fx
+
 #begin EffectGrayscale.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -63,6 +69,12 @@
 /processorParam:DebugMode=Auto
 /build:EffectPixelated.fx
 
+#begin EffectSaturate.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:EffectSaturate.fx
+
 #begin EffectTeleport.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -74,12 +86,6 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:ForwardLighting.fx
-
-#begin glow.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:glow.fx
 
 #begin Glow.png
 /importer:TextureImporter
