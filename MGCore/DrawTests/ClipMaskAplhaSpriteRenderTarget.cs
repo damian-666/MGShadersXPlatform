@@ -53,5 +53,9 @@ namespace MGCore.DrawTests
         
 
     }
-}
+        public void Update(GameTime gt, ContentManager cm)
+        {
+
+        }
+    }
 }

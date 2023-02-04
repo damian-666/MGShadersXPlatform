@@ -9,31 +9,44 @@ using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
-    public class Invert : IDrawTest
+    public class Teleport : IDrawTest
     {
+        float TotalSeconds;
         SpriteBatch spriteBatch;
         Texture2D texture;
-        Effect  _effectInvert;
+        Effect  _effectTeleport;
         private Rectangle deskRect;
+        private float _amount = 1;
+        private float _dir = -1;
 
         public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectInvert = cm.Load<Effect>("EffectInvert");
+            _effectTeleport = cm.Load<Effect>("EffectTeleport");
+
+
             deskRect.Width = 500;
             deskRect.Height = 500;
+
+        }
+
+
+        public void Update(GameTime gt, ContentManager cm)
+        {
+            TotalSeconds = (float)gt.ElapsedGameTime.TotalSeconds;
+            _amount += TotalSeconds * _dir;
+            _effectTeleport.Parameters["amount"].SetValue(_amount);
         }
 
         public void Draw(GameTime time)
         {
-            //Draw an image with colors inverted
+            //Draw a teleport effect image (Need the Update method to be run)
 
-            spriteBatch.Begin(effect: _effectInvert);
+            spriteBatch.Begin(effect: _effectTeleport);
             spriteBatch.Draw(texture, deskRect, Color.White);
             spriteBatch.End();
         }
-
       
     }
 

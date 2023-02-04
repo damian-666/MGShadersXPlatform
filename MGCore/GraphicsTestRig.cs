@@ -1,6 +1,7 @@
 ﻿
 using MGCore.DrawTests;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
@@ -50,10 +51,10 @@ namespace MGCore
             base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
             
 
-            CurrentDrawTest=new Invert();
+            CurrentDrawTest=new Bloom();
             
             CurrentDrawTest.Initialize(GraphicsDevice, GraphicsDeviceManager, Content);
-
+            
             //todo move this to eahch test... 
 
             ////we always have a Device by here

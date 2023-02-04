@@ -9,32 +9,31 @@ using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
-    public class Invert : IDrawTest
+    public class Pixelated : IDrawTest
     {
         SpriteBatch spriteBatch;
         Texture2D texture;
-        Effect  _effectInvert;
+        Effect _effectPixelated;
         private Rectangle deskRect;
 
         public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectInvert = cm.Load<Effect>("EffectInvert");
+            _effectPixelated = cm.Load<Effect>("EffectPixelated");
             deskRect.Width = 500;
             deskRect.Height = 500;
         }
-
+      
         public void Draw(GameTime time)
         {
-            //Draw an image with colors inverted
+            //Draw a pixelated image
 
-            spriteBatch.Begin(effect: _effectInvert);
+            spriteBatch.Begin(effect: _effectPixelated);
             spriteBatch.Draw(texture, deskRect, Color.White);
             spriteBatch.End();
         }
 
-      
     }
 
 }
