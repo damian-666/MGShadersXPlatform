@@ -45,11 +45,11 @@
 /processorParam:TextureFormat=Compressed
 /build:Console32.spritefont
 
-#begin Dissolve.fx
+#begin Fading.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:Dissolve.fx
+/build:Fading.fx
 
 #begin Fading.fx
 /importer:EffectImporter
