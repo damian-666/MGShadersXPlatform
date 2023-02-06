@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Bloom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Bloom.fx
+
 #begin ClipShader.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -39,47 +45,17 @@
 /processorParam:TextureFormat=Compressed
 /build:Console32.spritefont
 
-#begin EffectFading.fx
+#begin Dissolve.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:EffectFading.fx
+/build:Dissolve.fx
 
-#begin EffectGlow.fx
+#begin Fading.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:EffectGlow.fx
-
-#begin EffectGrayscale.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:EffectGrayscale.fx
-
-#begin EffectInvert.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:EffectInvert.fx
-
-#begin EffectPixelated.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:EffectPixelated.fx
-
-#begin EffectSaturate.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:EffectSaturate.fx
-
-#begin EffectTeleport.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:EffectTeleport.fx
+/build:Fading.fx
 
 #begin ForwardLighting.fx
 /importer:EffectImporter
@@ -99,6 +75,30 @@
 /processorParam:TextureFormat=Color
 /build:Glow.png
 
+#begin GlowTransparent.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GlowTransparent.png
+
+#begin Grayscale.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Grayscale.fx
+
+#begin Invert.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Invert.fx
+
 #begin MTextureVertPix.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -116,6 +116,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:orb-red.png
+
+#begin Pixelated.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Pixelated.fx
+
+#begin Saturate.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Saturate.fx
 
 #begin Score.spritefont
 /importer:FontDescriptionImporter
@@ -159,6 +171,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:surgeclip.png
+
+#begin Teleport.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Teleport.fx
 
 #begin TwoTextureSamplerX.fx
 /importer:EffectImporter

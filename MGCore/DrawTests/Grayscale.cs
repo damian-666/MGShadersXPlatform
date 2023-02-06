@@ -21,7 +21,7 @@ namespace MGCore.DrawTests
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectGrayscale = cm.Load<Effect>("EffectGrayscale");
+            _effectGrayscale = cm.Load<Effect>("Grayscale");
             deskRect.Width = 500;
             deskRect.Height = 500;
         }

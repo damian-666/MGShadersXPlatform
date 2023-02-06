@@ -23,7 +23,7 @@ namespace MGCore.DrawTests
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectTeleport = cm.Load<Effect>("EffectTeleport");
+            _effectTeleport = cm.Load<Effect>("Teleport");
 
 
             deskRect.Width = 500;

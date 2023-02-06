@@ -21,7 +21,7 @@ namespace MGCore.DrawTests
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectFading = cm.Load<Effect>("EffectFading");
+            _effectFading = cm.Load<Effect>("Fading");
             deskRect.Width = 500;
             deskRect.Height = 500;
         }

@@ -20,7 +20,7 @@ namespace MGCore.DrawTests
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectPixelated = cm.Load<Effect>("EffectPixelated");
+            _effectPixelated = cm.Load<Effect>("Pixelated");
             deskRect.Width = 500;
             deskRect.Height = 500;
         }

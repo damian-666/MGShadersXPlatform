@@ -14,7 +14,7 @@ namespace MGCore
 
 
 #if TODOMOVEotocassl
-    internal class Bloom
+    internal class BloomTest
     {
         GraphicsDevice gpu;
         SpriteBatch spriteBatch;
