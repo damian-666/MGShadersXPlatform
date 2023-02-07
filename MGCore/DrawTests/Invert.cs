@@ -20,7 +20,7 @@ namespace MGCore.DrawTests
         {
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectInvert = cm.Load<Effect>("EffectInvert");
+            _effectInvert = cm.Load<Effect>("Invert");
             deskRect.Width = 500;
             deskRect.Height = 500;
         }

@@ -13,7 +13,7 @@ namespace MGCore.DrawTests
     /// <summary>
     /// A test put the glowing bloom effect on a sprite
     /// </summary>
-    public class BloomTest : IDrawTest
+    public class Bloom : IDrawTest
     {
         GraphicsDeviceManager graphics;
         GraphicsDevice graphicsDevice;
@@ -34,7 +34,7 @@ namespace MGCore.DrawTests
             graphicsDevice = dev;
             texture = cm.Load<Texture2D>("orb-red");
             spriteBatch = new SpriteBatch(dev);
-            _effectGlow = cm.Load<Effect>("EffectGlow");
+            _effectGlow = cm.Load<Effect>("Bloom");
             deskRect.Width = 500;
             deskRect.Height = 500;
 
