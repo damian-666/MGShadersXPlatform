@@ -1,20 +1,17 @@
 ﻿using Foundation;
-using System;
-using UIKit;
-
-
 using MGCore;
+using UIKit;
 
 namespace IOSApp
 {
     [Register("AppDelegate")]
     internal class Program : UIApplicationDelegate
     {
-     
+
 
         internal static void RunGame()
         {
-            var game=new GraphicsTestRig();
+            var game = new GraphicsTestRig();
             game.Run();
         }
 

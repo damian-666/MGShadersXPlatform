@@ -1,13 +1,9 @@
 ﻿
 using MGCore.DrawTests;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-
-using System;
 using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Principal;
+using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MGCore
 {
@@ -45,16 +41,46 @@ namespace MGCore
         public static bool IsDirectX = true;
 
 
+
+        /// <summary>
+        /// Get via relection all thpes with IDrawTest interface and return them as a list
+        /// </summary>
+        /// <returns> A list of types</returns>
+        List<Type> GetallClassesWithIDrawTestInterace()
+        {
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            var result = types.Where(t => t.GetInterfaces().Contains(typeof(IDrawTest))).ToList();
+
+            
+            return result;
+        }
         protected override void LoadContent()
         {
+           base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
 
-            base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
-            
 
-            CurrentDrawTest=new Bloom();
-            
-            CurrentDrawTest.Initialize(GraphicsDevice, GraphicsDeviceManager, Content);
-            
+            RunAllTests();
+            //      CurrentDrawTest=new Bloom();
+            //        CurrentDrawTest=new NeonLine();
+            //      CurrentDrawTest=new Bloom();
+            //    CurrentDrawTest=new Pixelated();
+       //     InitTest();
+
+            Window.AllowUserResizing=true;
+
+
+
+        }
+        /// <summary>
+        /// load the contet for each test..   TODo unload
+        /// </summary>
+        private void InitTest()
+        {
+ 
+
+            CurrentDrawTest.Initialize(Content, GraphicsDevice, GraphicsDeviceManager);
+
+
             //todo move this to eahch test... 
 
             ////we always have a Device by here
@@ -63,13 +89,37 @@ namespace MGCore
 
 
             Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL"+CurrentDrawTest.GetType().Name);
-
-
-            Window.AllowUserResizing=true;
-
-
-
         }
+
+        protected List<Type> drawTests;
+        /// <summary>
+        /// activate instance of eachy type and delay between test
+        /// </summary>
+        public void RunAllTests()
+        {
+
+            drawTests=GetallClassesWithIDrawTestInterace();
+     
+        }
+
+
+
+        int IdxCurrentTest { get; set; } = 0;
+        /// <summary>
+        ///Activate  Instances of types and set CurrentDrawTest to them,  synchronously wiht a dely between them
+        /// </summary>
+        /// <param name="drawtests"></param>
+        public void NextTest(List<Type> drawtests)
+        {
+            if (IdxCurrentTest++>drawtests.Count-1)
+                IdxCurrentTest=0;
+
+
+            RunTest(IdxCurrentTest, drawtests);
+        }
+
+            
+        
         protected override void OnActivated(object sender, EventArgs args)
         {
             base.OnActivated(sender, args);
@@ -88,14 +138,19 @@ namespace MGCore
         /// TODO run a specific test form adrod or something
         /// </summary>
         /// <param name="i"></param>
-        public bool RunTest(int i)
+        public bool RunTest(int i, List<Type> drawtests)
         {
 
             bool success = true;
             try
             {
-
+               
+                CurrentDrawTest=Activator.CreateInstance(drawtests[IdxCurrentTest]) as IDrawTest;
+                InitTest();
+                  
             }
+
+            
 
             catch (Exception ex)
             {
@@ -119,13 +174,25 @@ namespace MGCore
 
         }
 
+        /// <summary>
+        /// total deay between game tests in sec;
+        /// </summary>
+        public float testdelay = 0.5f;
 
-
+       
         protected override void Update(GameTime gt)
         {
+     base.Update(gt); //updates the Input keys
 
+            if (gt.TotalGameTime.TotalSeconds>testdelay)
+            {
+                gt.TotalGameTime=new TimeSpan(0);
+                NextTest(drawTests);
+
+               
+            }
             //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
-            base.Update(gt); //updates the Input keys
+       
 
             //tOOD maeybe if free 1, 2 three on space to next test..ccyle back
 
@@ -136,7 +203,7 @@ namespace MGCore
         protected override void Draw(GameTime gameTime)
         {
 
-            CurrentDrawTest.Draw(gameTime);
+            CurrentDrawTest?.Draw(gameTime);
 
 #if MOVE
 

@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
@@ -17,12 +12,14 @@ namespace MGCore.DrawTests
     {
         public void Draw(GameTime time)
         {
-      
+
         }
 
-        public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
+//todo figure out hte key mask holes..  tye using the line glow wiht the angle.. not he new one..
+
+        public void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)
         {
-   
+
         }
         public void Update(GameTime gt, ContentManager cm)
         {

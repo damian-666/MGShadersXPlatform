@@ -10,31 +10,31 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MGCore.DrawTests
 {
-	static public class CommonAssets
-	{
+    static public class CommonAssets
+    {
 
-		public static Texture2D Pointer { get; private set; }
+        public static Texture2D Pointer { get; private set; }
 
-		public static Texture2D LineParticle { get; private set; }
-		public static Texture2D Glow { get; private set; }
-		public static Texture2D Pixel { get; private set; }     // a single white pixel
+        public static Texture2D LineParticle { get; private set; }
+        public static Texture2D Glow { get; private set; }
+        public static Texture2D Pixel { get; private set; }     // a single white pixel
 
-		public static SpriteFont Font { get; private set; }
+        public static SpriteFont Font { get; private set; }
 
-		public static void Load(ContentManager content, GraphicsDevice gr)
-		{
-
-
-			Pointer=content.Load<Texture2D>("Pointer");
+        public static void Load(ContentManager content, GraphicsDevice gr)
+        {
 
 
-			LineParticle=content.Load<Texture2D>("Laser");
-			Glow=content.Load<Texture2D>("Glow");
+            Pointer=content.Load<Texture2D>("Pointer");
 
-			Pixel.SetData(new[] { Color.White });
 
-			Font=content.Load<SpriteFont>("Font");
-		}
+            LineParticle=content.Load<Texture2D>("Laser");
+            Glow=content.Load<Texture2D>("Glow");
 
-	}
+            Pixel.SetData(new[] { Color.White });
+
+            Font=content.Load<SpriteFont>("Font");
+        }
+
+    }
 }
