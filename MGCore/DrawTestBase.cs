@@ -1,0 +1,76 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MGCore.DrawTests
+{
+    public abstract class DrawTestBase : IDrawTest
+    {
+        protected Rectangle deskRect;
+        protected GraphicsDeviceManager gm;
+        protected GraphicsDevice device;
+        protected SpriteBatch spriteBatch;
+
+        /// <summary>
+        /// the width of the window adn defualt surface in pixels,, TODO shold be resizeable, 
+        /// </summary>
+
+        public int Width { get; set; } = 500;
+        /// <summary>
+        ///  / the height of the window adn defualt surface in pixels, TODO shold be resizeable, 
+        /// </summary>
+        public int Height { get; set; } = 500;
+
+
+        public virtual void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)//todo i think remvie the Graphicsdevice and let the gm make one.
+        {
+            this.gm=gm;
+
+
+            if (dev!=null)
+            {
+
+                device=dev;
+
+            }
+            else
+            {
+                this.gm.PreferredDepthStencilFormat=DepthFormat.None;
+
+                this.gm.PreferredBackBufferWidth=500;
+                this.gm.PreferredBackBufferHeight=500;
+                this.gm.ApplyChanges();
+
+                device=gm.GraphicsDevice;
+
+                dev=device;
+            }
+
+            deskRect=SetTargetToRenderSize(gm);
+
+
+        }
+
+        public virtual void OnResize(EventArgs e)
+        {
+            //TODO this is probably the same for most
+        }
+
+
+
+        public static Rectangle SetTargetToRenderSize(GraphicsDeviceManager gm)
+        {
+            return new Rectangle(0, 0, gm.PreferredBackBufferWidth, gm.PreferredBackBufferHeight);
+        }
+
+
+
+
+        public static Rectangle SetTargetToRenderSize(GraphicsDevice dev)
+        {
+            return new Rectangle(0, 0, dev.Viewport.Width, dev.Viewport.Height);
+        }
+
+        public abstract void Draw(GameTime time);
+    }
+}
