@@ -1,26 +1,24 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-
 using Android.Views;
+using MGCore;
 using Microsoft.Xna.Framework;
 
-using MGCore;
-    
 
 namespace MGXPlatfrm.Android
 {
     [Activity(
-        
+
          Label = "MGXAndroid6",
         MainLauncher = true,
-   		 Icon = "@drawable/icon",
+            Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
         LaunchMode = LaunchMode.SingleInstance,
       ScreenOrientation = ScreenOrientation.FullUser,
-        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
+        ConfigurationChanges = ConfigChanges.Orientation|ConfigChanges.Keyboard|ConfigChanges.KeyboardHidden|ConfigChanges.ScreenSize
     )]
-  
+
 
     public class Activity1 : AndroidGameActivity//, IOnSystemUiVisibilityChangeListener  //was to hide hte navigation stuffk broken now
     {
@@ -29,23 +27,23 @@ namespace MGXPlatfrm.Android
         private GraphicsTestRig _game;
 
 
-         static Activity1()//set these before any dependencies get called
+        static Activity1()//set these before any dependencies get called
         {
-         
-            GraphicsTestRig.IsDirectX = false;//
+
+            GraphicsTestRig.IsDirectX=false;//
         }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-             
-            _game = new GraphicsTestRig();
 
-            _view = _game.Services.GetService(typeof(View)) as View;
+            _game=new GraphicsTestRig();
 
-        //    this.Window.DecorView.SetOnSystemUiVisibilityChangeListener(this);
-       //
+            _view=_game.Services.GetService(typeof(View)) as View;
+
+            //    this.Window.DecorView.SetOnSystemUiVisibilityChangeListener(this);
+            //
             SetContentView(_view);
 
 

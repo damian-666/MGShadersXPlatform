@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-
-using System;
-using System.Diagnostics;
-
 namespace MGCore
 {
     public class MGGameCore : Game
@@ -44,7 +40,7 @@ namespace MGCore
                 //   PreferredBackBufferWidth = width,
                 //     PreferredBackBufferHeight = height,
                 //      IsFullScreen = isFullScreen,   // dont so tis  use the transform and scale
-              //  PreferMultiSampling=true,  //donest work on android
+                //  PreferMultiSampling=true,  //donest work on android
                 SynchronizeWithVerticalRetrace=true  // use producer consumer.. run bk thread to run physics or whtever, copy viewable data to some kind of display list, draw the last good frame for multithreading..  to avoid locks or wait or semaphores in the draw method, cant generate a view while reading it..
             };
 
@@ -52,7 +48,7 @@ namespace MGCore
 
             _graphicsManager.PreferredDepthStencilFormat=DepthFormat.Depth24Stencil8; //
 
-             Content.RootDirectory="Content";
+            Content.RootDirectory="Content";
             IsMouseVisible=true;
             _instance=this;
             Window.Title="CrossPlatformCipShaderSample";
@@ -80,7 +76,7 @@ namespace MGCore
 
         protected override void Initialize()
         {
-       
+
             base.Initialize();
         }
 
@@ -97,11 +93,11 @@ namespace MGCore
         }
 
 
-    
+
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back==ButtonState.Pressed||Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             base.Update(gameTime);

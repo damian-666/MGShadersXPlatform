@@ -2,8 +2,6 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 
@@ -15,7 +13,7 @@ namespace MGCore
         public static Texture2D GetClippedTexture(GraphicsDevice gr, Texture2D tex, Texture2D mask, Effect clip)// SpriteBatch spriteBatch)
         {
 
-            var renderTargetViewport = gr.RenderTargetCount == 0 ? null : gr.GetRenderTargets()[0].RenderTarget;
+            var renderTargetViewport = gr.RenderTargetCount==0 ? null : gr.GetRenderTargets()[0].RenderTarget;
 
 
             RenderTarget2D currentRenderTarget;
@@ -26,7 +24,7 @@ namespace MGCore
             var w = tex.Width;
             var h = tex.Height;
 
-            Debug.Assert(w == mask.Width && h == mask.Height); //can use xforms or whatever... if needed on this
+            Debug.Assert(w==mask.Width&&h==mask.Height); //can use xforms or whatever... if needed on this
 
 
 
@@ -37,14 +35,16 @@ namespace MGCore
 
             gr.Clear(Color.Transparent);  //this is needed if we discard contents which seems like 
 
-           //dfgdfgdfgdfgdf
+            //dfgdfgdfgdfgdf
             clip.Parameters[0].SetValue(mask);
-            clip.Parameters[1].SetValue(tex); ;
+            clip.Parameters[1].SetValue(tex);
+            ;
 
             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
             //
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, clip);
-            spriteBatch.Draw(mask, Vector2.Zero, Color.Transparent); ;
+            spriteBatch.Draw(mask, Vector2.Zero, Color.Transparent);
+            ;
 
             //    spriteBatch.Draw(tex, Vector2.Zero, Color.White);
             //no because we really wann just draw whats in the mask , it will skip alpha so it wont work the other way...   
@@ -53,7 +53,7 @@ namespace MGCore
 
 
 
-            clippedTex = currentRenderTarget;
+            clippedTex=currentRenderTarget;
 
             gr.SetRenderTarget(renderTargetViewport as RenderTarget2D);//th TODOus is only needed to keep setting back since.. size we take the size 
 
@@ -76,13 +76,13 @@ namespace MGCore
         {
             string effectnamebase = "";
 
-            if (!GraphicsTestRig.IsDirectX && !string.IsNullOrEmpty(samplerName))  //in open gl samplers and textures are coupled together so names are combined
+            if (!GraphicsTestRig.IsDirectX&&!string.IsNullOrEmpty(samplerName))  //in open gl samplers and textures are coupled together so names are combined
             {
-                effectnamebase = samplerName + "+";
+                effectnamebase=samplerName+"+";
             }
 
 
-            string effectName = effectnamebase + textureName;
+            string effectName = effectnamebase+textureName;
             return effectName;
         }
 
@@ -91,7 +91,7 @@ namespace MGCore
         private static void SetNewRenderTarget(GraphicsDevice gr, int width, int height, out RenderTarget2D renderTarget)
         {
             //mip maps work this way also.. alspah channel doesnt
-            renderTarget = new RenderTarget2D(gr, width, height,
+            renderTarget=new RenderTarget2D(gr, width, height,
                //     false,
 
 
@@ -106,10 +106,11 @@ namespace MGCore
 
 
                   DepthFormat.Depth24Stencil8, //TODO check
-              //  DepthFormat.None,
-           
+                                               //  DepthFormat.None,
+
            0,  //4 or muitpsampe coun stll doesnt work in android, works in desktop Gl tho, 
-                RenderTargetUsage.DiscardContents, true); ;
+                RenderTargetUsage.DiscardContents, true);
+            ;
             ;
 
             gr.SetRenderTarget(renderTarget);

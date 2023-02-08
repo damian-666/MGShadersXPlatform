@@ -1,57 +1,49 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MGCore.DrawTests
 {
     /// <summary>
     /// A test put the glowing bloom effect on a sprite
     /// </summary>
-    public class Bloom : IDrawTest
+    public class Bloom : DrawTestBase
     {
-        GraphicsDeviceManager graphics;
-        GraphicsDevice graphicsDevice;
-        SpriteBatch spriteBatch;
-        Texture2D texture;
+        Texture2D _drawtexture;
         Effect _effectGlow;
-        private Rectangle deskRect;
 
 
-        public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
+
+        public override void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)
         {
-            graphics = gm;
+            base.Initialize(cm, dev, gm);
 
-            graphics.PreferredDepthStencilFormat = DepthFormat.None;
-            graphics.PreferredBackBufferWidth = 500;
-            graphics.PreferredBackBufferHeight = 500;
-            graphics.ApplyChanges();
-            graphicsDevice = dev;
-            texture = cm.Load<Texture2D>("orb-red");
-            spriteBatch = new SpriteBatch(dev);
-            _effectGlow = cm.Load<Effect>("Bloom");
-            deskRect.Width = 500;
-            deskRect.Height = 500;
+            spriteBatch=new SpriteBatch(device);
+            _drawtexture=cm.Load<Texture2D>("orb-red");
+            spriteBatch=new SpriteBatch(device);
+            _effectGlow=cm.Load<Effect>("Bloom");
+
+            _effectGlow=cm.Load<Effect>("Bloom");
 
             _effectGlow.Parameters["GlowIntensity"].SetValue(1f);
             _effectGlow.Parameters["GlowSize"].SetValue(0.05f);
 
         }
 
-        public void Draw(GameTime time)
+        public override void OnResize(EventArgs e)
         {
-            graphicsDevice.SetRenderTarget(null);
+            base.OnResize(e); //todo soemthing with deskreck...ill help with this 
+        }
+
+        public override void Draw(GameTime time)
+        {
+            device.SetRenderTarget(null);
             spriteBatch.Begin(effect: _effectGlow);
-            spriteBatch.Draw(texture, deskRect, Color.White);
+            spriteBatch.Draw(_drawtexture, deskRect, Color.White);
             spriteBatch.End();
         }
 
-       
+
 
     }
 }

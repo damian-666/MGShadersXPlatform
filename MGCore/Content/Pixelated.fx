@@ -27,7 +27,7 @@ struct VertexShaderOutput
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
-    float pixels = 64.0f;
+    float pixels = 128.0f;  //todo set as param
     float pixelation = 4.0f;
     float mx = input.TextureCoordinates.x * pixels;
     float my = input.TextureCoordinates.y * pixels;

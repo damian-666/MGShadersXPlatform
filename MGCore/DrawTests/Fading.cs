@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
@@ -16,20 +11,22 @@ namespace MGCore.DrawTests
         Effect _effectFading;
         private Rectangle deskRect;
 
-
-        public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
+        GraphicsDevice _device;
+        public void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)
         {
-            texture = cm.Load<Texture2D>("orb-red");
-            spriteBatch = new SpriteBatch(dev);
-            _effectFading = cm.Load<Effect>("Fading");
-            deskRect.Width = 500;
-            deskRect.Height = 500;
+
+            texture=cm.Load<Texture2D>("orb-red");
+            spriteBatch=new SpriteBatch(dev);
+            _effectFading=cm.Load<Effect>("Fading");
+
+            _device=dev;
+            deskRect=DrawTestBase.SetTargetToRenderSize(_device);
         }
 
         public void Draw(GameTime time)
         {
             //Draw a fading sprite
-
+            deskRect=DrawTestBase.SetTargetToRenderSize(_device);
             spriteBatch.Begin(effect: _effectFading);
             spriteBatch.Draw(texture, deskRect, Color.White);
             spriteBatch.End();

@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
@@ -13,16 +8,16 @@ namespace MGCore.DrawTests
     {
         SpriteBatch spriteBatch;
         Texture2D texture;
-        Effect  _effectInvert;
+        Effect _effectInvert;
         private Rectangle deskRect;
 
-        public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
+        public void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)
         {
-            texture = cm.Load<Texture2D>("orb-red");
-            spriteBatch = new SpriteBatch(dev);
-            _effectInvert = cm.Load<Effect>("Invert");
-            deskRect.Width = 500;
-            deskRect.Height = 500;
+            texture=cm.Load<Texture2D>("orb-red");
+            spriteBatch=new SpriteBatch(dev);
+            _effectInvert=cm.Load<Effect>("Invert");
+            deskRect.Width=500;
+            deskRect.Height=500;
         }
 
         public void Draw(GameTime time)
@@ -34,7 +29,7 @@ namespace MGCore.DrawTests
             spriteBatch.End();
         }
 
-      
+
     }
 
 }

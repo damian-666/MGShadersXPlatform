@@ -2,7 +2,7 @@
   <PropertyGroup>
 	<TargetFramework>net7.0-android33.0</TargetFramework>
     <OutputType>Exe</OutputType>
-	  <ApplicationId>com.companyname.MGClipFXv3</ApplicationId>
+	  <ApplicationId>com.MotherLoader.MGClipFX</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <PackageIcon>Icon.png</PackageIcon>
@@ -11,7 +11,7 @@
 
     <BaseOutputPath>..\bin\</BaseOutputPath>
   
-    <Title>AndroidClipMGTest</Title>
+    <Title>AndroidShadersMGTest</Title>
   
     <Nullable>warnings</Nullable>
   
@@ -31,6 +31,14 @@
 	   <PublishTrimmed>False</PublishTrimmed>
 	      <DefineConstants>$(DefineConstants)</DefineConstants> 
 	   <DebugType>none</DebugType>   
+   </PropertyGroup>
+
+   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+     <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
+   </PropertyGroup>
+
+   <PropertyGroup Condition="'$(Configuration)'=='Release'">
+     <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
    </PropertyGroup>
     
 

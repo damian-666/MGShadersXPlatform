@@ -3,6 +3,6 @@ using MGCore;
 
 {
     var game = new GraphicsTestRig();
-    GraphicsTestRig.IsDirectX = true;
+    GraphicsTestRig.IsDirectX=true;
     game.Run();  //this starts the render loop
 }

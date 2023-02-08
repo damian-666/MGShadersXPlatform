@@ -12,9 +12,8 @@
  
     <Title></Title>
  
-    <PackageOutputPath />
+
  
-    <PackageId />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

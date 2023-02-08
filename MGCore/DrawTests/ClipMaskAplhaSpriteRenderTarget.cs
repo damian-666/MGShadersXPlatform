@@ -1,12 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MGCore.DrawTests
 {
@@ -31,13 +25,13 @@ namespace MGCore.DrawTests
         Effect clip;
         public void Draw(GameTime time)
         {
-       
+
         }
 
-        public void Initialize(GraphicsDevice dev, GraphicsDeviceManager gm, ContentManager cm)
+        public void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm = null)
         {
 
-        //TODO   Window.Title+=" Render Target";
+            //TODO   Window.Title+=" Render Target";
 
             spriteBatch=new SpriteBatch(dev);
 
@@ -46,13 +40,13 @@ namespace MGCore.DrawTests
             //       shader = Content.Load<Effect>("Invert");
 
             spritetoClip=cm.Load<Texture2D>("surge");
-            
+
             clip=cm.Load<Effect>("ClipShader");
 
             striteClipMask=cm.Load<Texture2D>("surgeclip");
-        
 
-    }
+
+        }
         public void Update(GameTime gt, ContentManager cm)
         {
 
