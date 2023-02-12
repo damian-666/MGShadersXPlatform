@@ -59,14 +59,14 @@ namespace MGCore.DrawTests
             //         BasicEffect var = new BasicEffect(GraphicsDevice);
 
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, effect:clip);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, null, effect:clip);
 
 
             Rectangle rct = device.Viewport.Bounds;
 
 
 
-            spriteBatch.Draw(spritetoClip, rct, null, Color.White);
+            spriteBatch.Draw(spritetoClip, rct, null, Color.Transparent);
             //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
             //sending blend mode sourcealpha might work but this is fine
             spriteBatch.End();
