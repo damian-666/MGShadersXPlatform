@@ -1,4 +1,4 @@
-﻿namespace MGCore
+﻿namespace MGCore.DrawTests
 {
 
 

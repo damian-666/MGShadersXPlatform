@@ -21,7 +21,7 @@ namespace MGCore
             Texture2D clippedTex = null;
 
 
-            var w = tex.Width;
+             var w = tex.Width;
             var h = tex.Height;
 
             Debug.Assert(w==mask.Width&&h==mask.Height); //can use xforms or whatever... if needed on this

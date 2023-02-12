@@ -52,6 +52,10 @@ namespace MGCore.DrawTests
             spriteBatch.End();
         }
 
+        public void Update(GameTime time)
+        {
+          
+        }
     }
 
 }

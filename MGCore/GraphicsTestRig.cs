@@ -1,8 +1,10 @@
 ﻿
 using MGCore.DrawTests;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using System.Reflection;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace MGCore
@@ -21,12 +23,17 @@ namespace MGCore
         public static new GraphicsTestRig Instance;
 
 
+        public bool IsRunningAllTests = false;
 
+      
         IDrawTest CurrentDrawTest;
 
         public GraphicsTestRig()
         {
             Instance=this;
+
+
+
         }
 
 
@@ -51,20 +58,20 @@ namespace MGCore
             var types = Assembly.GetExecutingAssembly().GetTypes();
             var result = types.Where(t => t.GetInterfaces().Contains(typeof(IDrawTest))).ToList();
 
-            
+
             return result;
         }
         protected override void LoadContent()
         {
-           base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
+            base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
 
-
+        
             RunAllTests();
             //      CurrentDrawTest=new Bloom();
             //        CurrentDrawTest=new NeonLine();
             //      CurrentDrawTest=new Bloom();
             //    CurrentDrawTest=new Pixelated();
-       //     InitTest();
+            //     InitTest();
 
             Window.AllowUserResizing=true;
 
@@ -76,7 +83,7 @@ namespace MGCore
         /// </summary>
         private void InitTest()
         {
- 
+
 
             CurrentDrawTest.Initialize(Content, GraphicsDevice, GraphicsDeviceManager);
 
@@ -99,27 +106,29 @@ namespace MGCore
         {
 
             drawTests=GetallClassesWithIDrawTestInterace();
-     
+
         }
 
 
 
-        int IdxCurrentTest { get; set; } = 0;
+
+       
+        int CurrentTestIndex { get; set; } = 0;
         /// <summary>
         ///Activate  Instances of types and set CurrentDrawTest to them,  synchronously wiht a dely between them
         /// </summary>
         /// <param name="drawtests"></param>
         public void NextTest(List<Type> drawtests)
         {
-            if (IdxCurrentTest++>drawtests.Count-1)
-                IdxCurrentTest=0;
+            if (CurrentTestIndex++>drawtests.Count-1)
+                CurrentTestIndex=0;
 
 
-            RunTest(IdxCurrentTest, drawtests);
+            RunTest(CurrentTestIndex, drawtests);
         }
 
-            
-        
+
+
         protected override void OnActivated(object sender, EventArgs args)
         {
             base.OnActivated(sender, args);
@@ -144,13 +153,13 @@ namespace MGCore
             bool success = true;
             try
             {
-               
-                CurrentDrawTest=Activator.CreateInstance(drawtests[IdxCurrentTest]) as IDrawTest;
+
+                CurrentDrawTest=Activator.CreateInstance(drawtests[CurrentTestIndex]) as IDrawTest;
                 InitTest();
-                  
+
             }
 
-            
+
 
             catch (Exception ex)
             {
@@ -179,20 +188,29 @@ namespace MGCore
         /// </summary>
         public float testdelay = 0.5f;
 
-       
+
         protected override void Update(GameTime gt)
         {
-     base.Update(gt); //updates the Input keys
+            base.Update(gt); //updates the Input keys
 
-            if (gt.TotalGameTime.TotalSeconds>testdelay)
+            if (IsRunningAllTests)
             {
-                gt.TotalGameTime=new TimeSpan(0);
-                NextTest(drawTests);
+                if (gt.TotalGameTime.TotalSeconds>testdelay)
+                {
+                    gt.TotalGameTime=new TimeSpan(0);
+                    NextTest(drawTests);
+                }
+            }else
+            {
+         
+                if ( Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
 
-               
+                    NextTest(drawTests);
+                }
             }
             //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
-       
+
 
             //tOOD maeybe if free 1, 2 three on space to next test..ccyle back
 
@@ -205,57 +223,9 @@ namespace MGCore
 
             CurrentDrawTest?.Draw(gameTime);
 
-#if MOVE
-
-#if RENDERTARGETTEST
-            if (clippedTex==null)
-            {
-                clippedTex=Rasterizer.GetClippedTexture(GraphicsDevice, spritetoClip, striteClipMask, clip);
-
-            }
-
-          //  UInt32[] color = new UInt32[spritetoClip.Width*spritetoClip.Height];
-        //    clippedTex.GetData<UInt32>(color);
-
-            //    GraphicsDevice.Clear(Color.Transparent);
 
 
-   //         BasicEffect var = new BasicEffect(GraphicsDevice);
-       
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
-
-
-            Rectangle rct = GraphicsDevice.Viewport.Bounds;
-         
-            spriteBatch.Draw(clippedTex,   rct, null,  Color.White);
-            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
-            //sending blend mode sourcealpha might work but this is fine
-            spriteBatch.End();
-
-
-#else
-//TODO try clipping directly using advice from link in task about masks from community, t1,t2 registers , pass just the clip mask. draw through the efffect, no rendertarget needed
-                clip.Parameters[0].SetValue(catClipMask);
-              clip.Parameters[1].SetValue(spriteCat); ;
-
-             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
-//
-              spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
-               
-              spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
-
-           //    spriteBatch.Draw(spriteCat, Vector2.Zero, Color.White);
-           //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
-           //sending blend mode sourcealpha might work but this is fine
-               spriteBatch.End();
-
-#endif
-
-#endif
         }
 
-
     }
-
 }

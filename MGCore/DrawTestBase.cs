@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MGCore.DrawTests;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MGCore.DrawTests
+namespace MGCore
 {
     public abstract class DrawTestBase : IDrawTest
     {
@@ -36,9 +37,8 @@ namespace MGCore.DrawTests
             else
             {
                 this.gm.PreferredDepthStencilFormat=DepthFormat.None;
-
-                this.gm.PreferredBackBufferWidth=500;
-                this.gm.PreferredBackBufferHeight=500;
+                this.gm.PreferredBackBufferWidth=Width;
+                this.gm.PreferredBackBufferHeight=Height;
                 this.gm.ApplyChanges();
 
                 device=gm.GraphicsDevice;
@@ -56,14 +56,15 @@ namespace MGCore.DrawTests
             //TODO this is probably the same for most
         }
 
-
+        public virtual void Update(GameTime time)
+        {
+   
+        }
 
         public static Rectangle SetTargetToRenderSize(GraphicsDeviceManager gm)
         {
             return new Rectangle(0, 0, gm.PreferredBackBufferWidth, gm.PreferredBackBufferHeight);
         }
-
-
 
 
         public static Rectangle SetTargetToRenderSize(GraphicsDevice dev)

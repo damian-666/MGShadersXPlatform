@@ -18,6 +18,7 @@ namespace MGCore.DrawTests
         /// <param name="gm"></param>
         void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm = null);// 
         void Draw(GameTime time);
+        void Update(GameTime time) { }
 
     }
 }
