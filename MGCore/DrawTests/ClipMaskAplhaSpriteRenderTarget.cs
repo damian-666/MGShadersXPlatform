@@ -42,8 +42,6 @@ namespace MGCore.DrawTests
 
 
 
-        SpriteBatch spriteBatch;
-
 
         Texture2D clippedTex = null;
 
