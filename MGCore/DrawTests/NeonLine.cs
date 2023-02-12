@@ -33,9 +33,14 @@ namespace MGCore.DrawTests
 
          //   glowingPixel=cm.Load<Texture2D>("Glow"); //tOdo this is what neon shooer used, why did you do the transparent?????  QUESTIOn
 
-   glowingPixel = cm.Load<Texture2D>("GlowTransparent");
+  // glowingPixel = cm.Load<Texture2D>("Glow");
+
+
+glowingPixel= cm.Load<Texture2D>("GlowTransparent");
+
+
             Pixel=new Texture2D(device, 1, 1);
-            Pixel.SetData(new[] { Color.Magenta });
+            Pixel.SetData(new[] { Color.Magenta });//why thsi.. i set key color to red... 
 
             startLine=Vector2.Zero;
             endLine=new Vector2(Width, Height);
@@ -48,20 +53,26 @@ namespace MGCore.DrawTests
 
         public override void Draw(GameTime time)
         {
-
-//NOTE i batched this...
-         //   Vector2 Offset = new Vector2(20+Thickness, 20+Thickness);
-
+      ///     device.SetRenderTarget(null);
+            //NOTE i batched this...
+            //   Vector2 Offset = new Vector2(20+Thickness, 20+Thickness);
+//device.Clear(color: Color.Red);
 
    Vector2 Offset = new Vector2(20, 20);
+
+        //    GraphicsDevice.DiscardColor=Color.Red;  ///TODO what is the key color for..
+            //TOD shis shouod be batched as one 
             //Draw a the glow sprite and stretch it across the window
+        //    spriteBatch.Begin( SpriteSortMode.Immediate, blendState: BlendState.NonPremultiplied);
             spriteBatch.Begin();
+
             DrawLine(spriteBatch, glowingPixel, startLine, endLine, Color.Magenta, Thickness);
-          
+          spriteBatch.End();
             //Draw a pixel line slightly down to avoid overlap
-          
-            DrawLine(spriteBatch, Pixel, startLine+Offset, endLine+Offset, Color.Blue);
-            spriteBatch.End();
+
+            //spriteBatch.Begin();
+            //DrawLine(spriteBatch, Pixel, startLine+Offset, endLine+Offset, Color.Blue);
+            //spriteBatch.End();
 
         }
 

@@ -12,6 +12,7 @@
     <None Remove="Content\obj\**" />
   </ItemGroup>
   <ItemGroup>
+
     <EditorConfigFiles Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
