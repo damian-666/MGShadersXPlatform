@@ -28,8 +28,7 @@ namespace MGCore
        public bool Paused = false;
         IDrawTest CurrentDrawTest;
 
-        bool IsAndroid = false;//todo
-
+    
         public GraphicsTestRig()
         {
             Instance=this;

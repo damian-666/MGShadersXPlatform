@@ -29,7 +29,7 @@ namespace MGXPlatfrm.Android
 
         static Activity1()//set these before any dependencies get called
         {
-
+            GraphicsTestRig.IsAndroid=true;
             GraphicsTestRig.IsDirectX=false;//
         }
 

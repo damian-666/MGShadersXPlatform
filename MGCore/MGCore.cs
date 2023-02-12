@@ -24,6 +24,9 @@ namespace MGCore
 
         public bool UseEffects { get; set; }
 
+
+        public static bool IsAndroid = false;
+
         /// <summary>
         /// enables/disables if we should quit the app when escape is pressed
         /// </summary>
@@ -57,12 +60,20 @@ namespace MGCore
             Window.AllowUserResizing = true;
             Window.AllowAltF4 = true;
             Window.ClientSizeChanged+=Window_ClientSizeChanged;
+            
+              if (!IsAndroid)
+            {
             Window.TextInput+=Window_TextInput;
 
+
+          
+                Window.KeyDown+=Window_KeyDown;
+                Window.KeyUp+=Window_KeyUp;
+            }
+            
+     
             
 
-            Window.KeyDown+=Window_KeyDown;
-             Window.KeyUp+=Window_KeyUp;
 
             _graphicsManager=new GraphicsDeviceManager(this)
             {
