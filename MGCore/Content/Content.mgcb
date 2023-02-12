@@ -19,11 +19,37 @@
 /processorParam:DebugMode=Auto
 /build:Bloom.fx
 
+
+#begin BloomExtract.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:BloomExtract.fx
+
+
+
+
+
+#begin BloomCombine.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:BloomCombine.fx
+
 #begin ClipShader.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:ClipShader.fx
+
+
+
+#begin ClipShaderNew.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:ClipShaderNew.fx
+
 
 #begin ClipShaderSpriteTarget.fx
 /importer:EffectImporter

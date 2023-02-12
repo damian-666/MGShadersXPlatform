@@ -23,8 +23,7 @@ namespace MGCore.DrawTests
             spriteBatch=new SpriteBatch(device);
             _effectGlow=cm.Load<Effect>("Bloom");
 
-            _effectGlow=cm.Load<Effect>("Bloom");
-
+    
             _effectGlow.Parameters["GlowIntensity"].SetValue(1f);
             _effectGlow.Parameters["GlowSize"].SetValue(0.05f);
 

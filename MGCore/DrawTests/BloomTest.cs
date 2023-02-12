@@ -1,13 +1,64 @@
-﻿namespace MGCore.DrawTests
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MGCore.DrawTests
 {
 
 
-#if TODOMOVEotocassl
-    internal class BloomTest
+
+    public class BloomRT: IDrawTest
     {
+
+        int width = 800;
+        int height = 600;
+        public void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)
+        {
+
+
+               gpu=dev;
+         
+
+            BloomThreshold=0.25f;
+            BlurAmount=4;
+            BloomIntensity=2;
+            BaseIntensity=1f;
+            BloomSaturation=1;
+            BaseSaturation=1;    
+            PresentationParameters pp = gpu.PresentationParameters;
+       
+            SurfaceFormat format = pp.BackBufferFormat;
+               sourceimage=cm.Load<Texture2D>("orb-red");
+            glow_fx=cm.Load<Effect>("BloomCombine");
+
+            spriteBatch=new SpriteBatch(gpu);
+
+            //Create 2 rendertargets for bloom processing, there are half size of backbuffer in order to minimize fillrate costs
+            //Reducing the solution this way doesn't hurt the quality becausewe will be blur the images anyway.
+            width/=2;
+            height/=2;
+
+            renderTarget1=new RenderTarget2D(gpu, width, height, false, format, DepthFormat.None);
+            renderTarget2=new RenderTarget2D(gpu, width, height, false, format, DepthFormat.None);
+
+
+
+
+            BloomThreshold=0.25f;
+            BlurAmount=4;
+            BloomIntensity=2;
+            BaseIntensity=1f;
+            BloomSaturation=1;
+            BaseSaturation=1;
+
+
+        }
+
         GraphicsDevice gpu;
-        SpriteBatch spriteBatch;
+       
         Effect glow_fx;
+
+        SpriteBatch spriteBatch;
         RenderTarget2D renderTarget1;
         RenderTarget2D renderTarget2;
 
@@ -20,67 +71,44 @@
 
 
 
-        // C O N S T R U C T
-        public Bloom(GraphicsDevice GPU, SpriteBatch sprBatch)
-        {
-            gpu = GPU;
-            spriteBatch = sprBatch;
-
-            BloomThreshold = 0.25f;
-            BlurAmount = 4;
-            BloomIntensity = 2;
-            BaseIntensity = 1f;
-            BloomSaturation = 1;
-            BaseSaturation = 1;
-        }
-
-        // L O A D
-
-        public void LoadContent(ContentManager Content)
-        {
-            glow_fx = Content.Load<Effect>("glow");
-
-            PresentationParameters pp = gpu.PresentationParameters;
-            int width = 800;
-            int height = 600;
-            SurfaceFormat format = pp.BackBufferFormat;
-
-            //Create 2 rendertargets for bloom processing, there are half size of backbuffer in order to minimize fillrate costs
-            //Reducing the solution this way doesn't hurt the quality becausewe will be blur the images anyway.
-            width /= 2;
-            height /= 2;
-
-            renderTarget1 = new RenderTarget2D(gpu, width, height, false, format, DepthFormat.None);
-            renderTarget2 = new RenderTarget2D(gpu, width, height, false, format, DepthFormat.None);
-        }
-
         public void UnloadContent()
         {
             renderTarget1.Dispose();
             renderTarget2.Dispose();
         }
 
+        Texture2D sourceimage;
+
+    public  void
+            Draw(GameTime time)
+    {
+
+            DrawFullScreenQuad(sourceimage, width, height);
+    }
+
+
+
         // D R A W
         // ( you can pass a RenderTargetr layer into a "Source" also )
         public void Draw(Texture2D source, RenderTarget2D destRT)
         {
             //Draw Brighest Parts
-            glow_fx.CurrentTechnique = glow_fx.Techniques["BloomExtract"];
+            glow_fx.CurrentTechnique=glow_fx.Techniques["BloomExtract"];
             glow_fx.Parameters["BloomThreshold"].SetValue(BloomThreshold);
             DrawToTarget(renderTarget1, renderTarget2);
 
             //HORIZONTAL BLUR
-            glow_fx.CurrentTechnique = glow_fx.Techniques["Blur"];
-            SetBlurEffectParameters(1.0f / (float)renderTarget1.Width, 0);
+            glow_fx.CurrentTechnique=glow_fx.Techniques["Blur"];
+            SetBlurEffectParameters(1.0f/(float)renderTarget1.Width, 0);
             DrawToTarget(renderTarget2, renderTarget1);
 
             //VERTICAL BLUR
-            SetBlurEffectParameters(1.0f / (float)renderTarget1.Height, 0);
+            SetBlurEffectParameters(1.0f/(float)renderTarget1.Height, 0);
             DrawToTarget(renderTarget2, renderTarget1);
 
             //COMBINE RESULTS
             gpu.SetRenderTarget(destRT);
-            glow_fx.CurrentTechnique = glow_fx.Techniques["Combine"];
+            glow_fx.CurrentTechnique=glow_fx.Techniques["Combine"];
             glow_fx.Parameters["BloomIntensity"].SetValue(BloomIntensity);
             glow_fx.Parameters["BaseIntensity"].SetValue(BaseIntensity);
             glow_fx.Parameters["BloomSaturation"].SetValue(BloomSaturation);
@@ -102,7 +130,7 @@
         void DrawFullScreenQuad(Texture2D texture, int width, int height)
         {
             gpu.Clear(Color.Transparent); // <-- Must do this for each target if using transparent target.
-            spriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, glow_fx);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,  effect :glow_fx);
             spriteBatch.Draw(texture, new Rectangle(0, 0, width, height), Color.White);
             spriteBatch.End();
         }
@@ -163,20 +191,8 @@
             return (float)((1.0 / Math.Sqrt(2 * Math.PI * theta)) * Math.Exp(-(n * n) / (2 / theta * theta)));
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
     }
-#endif
+
 }
 
