@@ -7,11 +7,12 @@ namespace MGCore.DrawTests
 
 
 
-    public class BloomRT: IDrawTest
+    public class BloomRT : IDrawTest, IDisposable
     {
 
-        int width = 800;
-        int height = 600;
+
+        int width, height;
+
         public void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)
         {
 
@@ -35,9 +36,9 @@ namespace MGCore.DrawTests
 
             //Create 2 rendertargets for bloom processing, there are half size of backbuffer in order to minimize fillrate costs
             //Reducing the solution this way doesn't hurt the quality becausewe will be blur the images anyway.
-            width/=2;
-            height/=2;
-
+             width =MGGameCore.Instance.Width/=2;
+             height = MGGameCore.Instance.Height/2;
+            
             renderTarget1=new RenderTarget2D(gpu, width, height, false, format, DepthFormat.None);
             renderTarget2=new RenderTarget2D(gpu, width, height, false, format, DepthFormat.None);
 
@@ -78,8 +79,9 @@ namespace MGCore.DrawTests
         }
 
         Texture2D sourceimage;
+        private bool disposedValue;
 
-    public  void
+        public  void
             Draw(GameTime time)
     {
 
@@ -191,7 +193,39 @@ namespace MGCore.DrawTests
             return (float)((1.0 / Math.Sqrt(2 * Math.PI * theta)) * Math.Exp(-(n * n) / (2 / theta * theta)));
         }
 
-   
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+
+ 
+                        renderTarget1.Dispose();
+                        renderTarget2.Dispose();
+                    
+                    // TODO: dispose managed state (managed objects)
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                disposedValue=true;
+            }
+        }
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+        // ~BloomRT()
+        // {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        //     Dispose(disposing: false);
+        // }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
     }
 
 }

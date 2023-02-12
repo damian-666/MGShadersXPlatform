@@ -30,7 +30,7 @@ float4 SpritePixelShader(PixelInput p) : COLOR0
     float4 diffuse = tex2D(TextureSampler, p.TexCoord.xy);
     float4 mask = tex2D(MaskSampler, p.TexCoord.xy);
 
-    return diffuse * float4(mask.r, mask.b, mask.r, mask.r);
+    return diffuse* float4(mask.r, mask.b, mask.r, mask.a);
 }
 
 technique SpriteBatch

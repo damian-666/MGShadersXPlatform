@@ -1,11 +1,11 @@
 ﻿
 using MGCore.DrawTests;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Diagnostics;
 using System.Reflection;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MGCore
 {
@@ -25,18 +25,24 @@ namespace MGCore
 
         public bool IsRunningAllTests = false;
 
-      
+       public bool Paused = false;
         IDrawTest CurrentDrawTest;
+
+        bool IsAndroid = false;//todo
 
         public GraphicsTestRig()
         {
             Instance=this;
+            MGGameCore.Instance.GraphicsDeviceManager.DeviceReset+=GraphicsDeviceManager_DeviceReset;
 
-
-
+            LoadAlTests();
         }
 
-
+        private void GraphicsDeviceManager_DeviceReset(object sender, EventArgs e)
+        {
+          
+ //            CurrentDrawTest?.Initialize(Content, GraphicsDevice, //GraphicsDeviceManager);
+        }            
 
 
         protected override void Initialize()
@@ -66,7 +72,7 @@ namespace MGCore
             base.LoadContent();   //mabye dont do this.. conetn get load in each test.. and w em might unlaod it too... or IDispose it...  //TODO
 
         
-            RunAllTests();
+      
             //      CurrentDrawTest=new Bloom();
             //        CurrentDrawTest=new NeonLine();
             //      CurrentDrawTest=new Bloom();
@@ -75,7 +81,7 @@ namespace MGCore
 
             Window.AllowUserResizing=true;
 
-
+        
 
         }
         /// <summary>
@@ -102,9 +108,9 @@ namespace MGCore
         /// <summary>
         /// activate instance of eachy type and delay between test
         /// </summary>
-        public void RunAllTests()
+        public void LoadAlTests()
         {
-
+            
             drawTests=GetallClassesWithIDrawTestInterace();
 
         }
@@ -120,8 +126,10 @@ namespace MGCore
         /// <param name="drawtests"></param>
         public void NextTest(List<Type> drawtests)
         {
-            if (CurrentTestIndex++>drawtests.Count-1)
+            if (CurrentTestIndex>=drawtests.Count-1)
                 CurrentTestIndex=0;
+            else
+                CurrentTestIndex++;
 
 
             RunTest(CurrentTestIndex, drawtests);
@@ -154,13 +162,46 @@ namespace MGCore
             try
             {
 
-                CurrentDrawTest=Activator.CreateInstance(drawtests[CurrentTestIndex]) as IDrawTest;
-                InitTest();
+                if (i==0)
+                    i++;
+                if (CurrentDrawTest==drawTests[CurrentTestIndex])
+                    return true;
 
+                Paused=true;
+
+                Thread.Sleep(32);
+
+                CurrentTestIndex=i;
+
+         //       if (CurrentDrawTest is IDisposable disposable)
+          //      {
+
+
+           //        disposable.Dispose();
+           //     }
+                    UnloadContent();
+                 
+                    CurrentDrawTest=null; 
+
+
+
+                      
+                    CurrentDrawTest=Activator.CreateInstance(drawtests[CurrentTestIndex]) as IDrawTest;
+
+
+                    LoadContent();
+
+         
+                    CurrentDrawTest.Initialize(Content, GraphicsDevice, GraphicsDeviceManager);
+                    //          InitTest();
+
+                    Window.Title=CurrentDrawTest.GetType().ToString();
+
+                    Paused=false;
+
+
+ 
             }
-
-
-
             catch (Exception ex)
             {
                 Debug.Write(" test   "+i+" failed "+ex.Message);
@@ -192,7 +233,15 @@ namespace MGCore
         protected override void Update(GameTime gt)
         {
             base.Update(gt); //updates the Input keys
+        
+            //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
 
+            //tOOD maeybe if free 1, 2 three on space to next test..ccyle back
+
+        }
+
+        private void CheckToChangeTest(GameTime gt)
+        {
             if (IsRunningAllTests)
             {
                 if (gt.TotalGameTime.TotalSeconds>testdelay)
@@ -200,26 +249,33 @@ namespace MGCore
                     gt.TotalGameTime=new TimeSpan(0);
                     NextTest(drawTests);
                 }
-            }else
+            }
+            else
             {
-         
-                if ( Keyboard.GetState().IsKeyDown(Keys.Space))
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
 
-                    NextTest(drawTests);
+                     NextTest(drawTests);
                 }
             }
-            //TODO put this on the callback from the GameLoop, it call poll faster on the bk thread that can be faster than 60 hhz , works ok . occasiona touch exceptio colection modified but doesnt seem an issue
 
 
-            //tOOD maeybe if free 1, 2 three on space to next test..ccyle back
-
+            Thread.Sleep(3);
         }
-
-
 
         protected override void Draw(GameTime gameTime)
         {
+            
+            if (Paused)
+                return;
+
+
+            CheckToChangeTest(gameTime);
+
+           
+
+            GraphicsDevice.Clear(Color.BlueViolet);
 
             CurrentDrawTest?.Draw(gameTime);
 

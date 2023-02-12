@@ -22,6 +22,7 @@ namespace MGCore
         /// </summary>
         public int Height { get; set; } = 500;
 
+        public bool UseEffects => GraphicsTestRig.Instance.UseEffects;
 
         public virtual void Initialize(ContentManager cm, GraphicsDevice dev, GraphicsDeviceManager gm)//todo i think remvie the Graphicsdevice and let the gm make one.
         {
@@ -30,20 +31,18 @@ namespace MGCore
 
             if (dev!=null)
             {
-
                 device=dev;
-
             }
             else
             {
-                this.gm.PreferredDepthStencilFormat=DepthFormat.None;
-                this.gm.PreferredBackBufferWidth=Width;
+                gm.PreferredDepthStencilFormat=DepthFormat.None;
+                gm.PreferredBackBufferWidth=Width;
                 this.gm.PreferredBackBufferHeight=Height;
                 this.gm.ApplyChanges();
 
                 device=gm.GraphicsDevice;
 
-                dev=device;
+             
             }
 
             deskRect=SetTargetToRenderSize(gm);
@@ -53,12 +52,14 @@ namespace MGCore
 
         public virtual void OnResize(EventArgs e)
         {
+
+
             //TODO this is probably the same for most
         }
 
         public virtual void Update(GameTime time)
         {
-   
+
         }
 
         public static Rectangle SetTargetToRenderSize(GraphicsDeviceManager gm)
@@ -72,6 +73,15 @@ namespace MGCore
             return new Rectangle(0, 0, dev.Viewport.Width, dev.Viewport.Height);
         }
 
-        public abstract void Draw(GameTime time);
+        public void Draw(GameTime gt)
+        {
+            Draw(gt, UseEffects);
+        }
+        public abstract void Draw(GameTime time, bool useEffect = true);
+
+
+
+
+
     }
 }

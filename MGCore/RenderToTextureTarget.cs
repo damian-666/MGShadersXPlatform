@@ -36,9 +36,9 @@ namespace MGCore
             gr.Clear(Color.Transparent);  //this is needed if we discard contents which seems like 
 
             //dfgdfgdfgdfgdf
-            clip.Parameters[0].SetValue(mask);
-            clip.Parameters[1].SetValue(tex);
-            ;
+            clip?.Parameters[0].SetValue(mask);
+            clip?.Parameters[1].SetValue(tex);
+            
 
             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
             //
@@ -72,22 +72,7 @@ namespace MGCore
 
 
 
-        private static string GetEffectParamName(string samplerName, string textureName)
-        {
-            string effectnamebase = "";
-
-            if (!GraphicsTestRig.IsDirectX&&!string.IsNullOrEmpty(samplerName))  //in open gl samplers and textures are coupled together so names are combined
-            {
-                effectnamebase=samplerName+"+";
-            }
-
-
-            string effectName = effectnamebase+textureName;
-            return effectName;
-        }
-
-
-
+  
         private static void SetNewRenderTarget(GraphicsDevice gr, int width, int height, out RenderTarget2D renderTarget)
         {
             //mip maps work this way also.. alspah channel doesnt
@@ -95,6 +80,9 @@ namespace MGCore
                //     false,
 
 
+
+                
+           
                GraphicsTestRig.IsDirectX,  ///use mip maps in dx tho.. in gl for andord stll mg38.1  not working, alos cant  antialialis line w mipmap on
 
 
@@ -110,8 +98,8 @@ namespace MGCore
 
            0,  //4 or muitpsampe coun stll doesnt work in android, works in desktop Gl tho, 
                 RenderTargetUsage.DiscardContents, true);
-            ;
-            ;
+            
+            
 
             gr.SetRenderTarget(renderTarget);
         }

@@ -22,7 +22,7 @@ namespace MGCore
         /// </summary>
         internal static MGGameCore _instance;
 
-
+        public bool UseEffects { get; set; }
 
         /// <summary>
         /// enables/disables if we should quit the app when escape is pressed
@@ -34,13 +34,13 @@ namespace MGCore
         public GraphicsDeviceManager GraphicsDeviceManager { get => _graphicsManager; }
 
 
-       
+
         /// <summary>
         /// log a trace result
         /// 
         /// </summary>
-        
-  
+
+        public PresentationParameters PresentationParms;
         public MGGameCore()
         {
 #if  FINDAMODERNTHREADSAFEFILTERINGLOGGERWITHCATEGORYFILTERSANDUINADTHREADSAFE
@@ -59,9 +59,10 @@ namespace MGCore
             Window.ClientSizeChanged+=Window_ClientSizeChanged;
             Window.TextInput+=Window_TextInput;
 
+            
+
             Window.KeyDown+=Window_KeyDown;
              Window.KeyUp+=Window_KeyUp;
-
 
             _graphicsManager=new GraphicsDeviceManager(this)
             {
@@ -90,23 +91,31 @@ namespace MGCore
 
         private void Window_KeyUp(object sender, InputKeyEventArgs e)
         {
-            Trace.WriteLine("windowkeyup"+e.ToString());
+
+        //    Trace.WriteLine("windowkeyup"+e.ToString());
         }
 
         private void Window_KeyDown(object sender, InputKeyEventArgs e)
         {
-            Trace.WriteLine("windowkeydown"+e.ToString());
+
+
+            if (e.Key==Keys.E)
+            {
+                UseEffects=!UseEffects;
+            }
+            //  Trace.WriteLine("windowkeydown"+e.ToString());
         }
 
         private void Window_TextInput(object sender, TextInputEventArgs e)
         {
-              Trace.WriteLine("Window_TextInput"+e.ToString());  
+           //   Trace.WriteLine("Window_TextInput"+e.ToString());  
 
         }
 
         private void Window_ClientSizeChanged(object sender, EventArgs e)
         {
-            _graphicsManager.ApplyChanges();
+             _graphicsManager.ApplyChanges();
+            
         }
 
         public int Width
@@ -131,7 +140,6 @@ namespace MGCore
 
         protected override void Initialize()
         {
-
             base.Initialize();
         }
 
@@ -139,12 +147,14 @@ namespace MGCore
 
         protected override void LoadContent()
         {
+
             _spriteBatch=new SpriteBatch(GraphicsDevice);
 
 
             //loading a biggest font and scale by  factor of 2  seemms to work better
             _font=Content.Load<SpriteFont>("Console32");// or arial
-        
+            PresentationParms=_graphicsManager.GraphicsDevice.PresentationParameters;
+
         }
 
 
