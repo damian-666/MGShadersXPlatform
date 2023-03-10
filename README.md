@@ -1,4 +1,8 @@
-The main point of this sample is to show how to organize code that uses netcore6 and targets both mobile and desktops.  "Write Once deploy Anywhere"   Its for a game or sim that could work on both a pc and a tablet or phone with keyboard, virtual gamepad, or simple touch, and custom UI..  There are no dependencies besides Monongame and NetCore.  iT HAS A MASKING CLIP SHADER.   
+The main point of this sample is to show how to organize code that uses netcore7 and targets both mobile and desktops.  "Write Once deploy Anywhere" 
+
+This includes shaders and content build and optimized for specific platforms.    it is using the mojoshader branch and there is a compute linked branch which is incomplete , unmerged but desired to move forward.
+
+  Its for a game or sim that could work on both a pc and a tablet or phone with keyboard, virtual gamepad, or simple touch, and custom UI..  There are no dependencies besides Monongame and NetCore.  iT HAS A MASKING CLIP SHADER.   this is a test  of shaders and it shoold be using the stencil buffer.  and earlier attempt exposed a gl pug that manifests inself  wiht a  if  branching.   not branching fixed the issue , its explained in Shadertoy
 
 UPDATE:  Tried the bait and switch method with the Compute fork from NuGet  , there are issues:
 
